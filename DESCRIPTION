@@ -1,11 +1,45 @@
-Package: cleanTS
 Type: Package
-Title: What the Package Does (Title Case)
+Package: cleanTS
+Title: Univariate Time Series Cleaning
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: 
+    c(person(given = "Mayur",
+             family = "Shende",
+             role = c("aut", "cre"),
+             email = "mayur.k.shende@gmail.com",
+             comment = c(ORCID = "0000-0002-1738-2573")),
+      person(given = "Neeraj",
+             family = "Bokde",
+             role = "aut",
+             email = "neerajdhanraj@mpe.au.dk",
+             comment = c(ORCID = "0000-0002-3493-9302")))
+Description: Package for automating univariate time series cleaning. It
+    implements reliable and efficient procedures for automating the
+    process of cleaning univariate time series data. The package provides
+    integration with already developed and deployed tools for missing
+    value imputation and outlier detection. It also provides a way of
+    visualizing large time-series data in different resolutions.
+License: GPL (>= 3)
+URL: https://github.com/Mayur1009/cleanTS
+BugReports: https://github.com/Mayur1009/cleanTS/issues
+Imports:
+    anomalize,
+    data.table,
+    gganimate,
+    ggplot2,
+    ggtext,
+    gifski,
+    glue,
+    imputeTestbench,
+    imputeTS,
+    lubridate,
+    magrittr,
+    shiny,
+    stringr,
+    tibble,
+    tibbletime,
+    transformr
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1

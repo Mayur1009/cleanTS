@@ -1,0 +1,20 @@
+url: https://cleanTS.com
+
+template:
+  params:
+    bootswatch: cosmo
+
+reference:
+  - title: "Functions"
+    contents:
+    - cleanTS
+    - animate_interval
+    - interact_plot
+    - print.cleanTS
+    - gen.animation
+    - gen.report
+    - check_input
+    - missing_timestamps
+    - duplicate_timestamps
+    - impute
+    - detect_outliers

@@ -1,6 +1,15 @@
 #' Create interactive plot
-#' @param obj Object of cleanTS
-#' @param interval Viewing interval
+#'
+#' Interactive plot is similar to the animated plot, but gives the used some
+#' control over the animation. It runs a shinyApp instead of creating a GIF.
+#'
+#' @param obj A *cleanTS* object.
+#' @param interval A numeric or character, specifying the viewing interval.
+#'
+#' #' @examples
+#' \dontrun{
+#'   interact_plot(cts, interval = "1 week")
+#' }
 #'
 #' @import shiny
 #' @import ggplot2
@@ -94,7 +103,7 @@ interact_plot <- function(obj, interval) {
     }
 
     cat("\n# Missing Values: ", n.miss_val, "\n")
-    if(n.miss_val > 0) {
+    if (n.miss_val > 0) {
       print(miss_val)
     } else {
       cat("\nNo missing values.\n")

@@ -1,2 +1,11 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
+^cleanTS_App$
+^docs$
+^_pkgdown\.yml$
+^README\.Rmd$
+^tests/testthat/assets/site-citation$
+^tests/testthat/assets/site-dot-github/.github$
+^\.github$
+^pkgdown$

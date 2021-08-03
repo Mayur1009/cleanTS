@@ -1,6 +1,19 @@
-#' Generate animated plot.
-#' @param obj Object of cleanTS
-#' @param interval Viewing interval
+#' Generate animated plot
+#'
+#' `animate_interval()` creates an animated plot using a `cleanTS` object
+#' and a interval.
+#' @param obj A *cleanTS* object.
+#' @param interval A numeric or character, specifying the viewing interval.
+#'
+#' @return
+#' A list containing:
+#' * animation: A `gganim` object.
+#' * nstates: The number of states in the animation.
+#'
+#' @examples
+#' \dontrun{
+#'   anim <- animate_interval(cts, interval = "1 week")
+#' }
 #'
 #' @import ggplot2
 #' @import transformr
@@ -122,11 +135,27 @@ reportHelper <- function(data, miss_ts, dup_ts) {
 
 #' Generate animation
 #'
-#' @param anim List of gganim and nstates
-#' @param nframes No. of frames
-#' @param duration Duration of animation
-#' @param ... Extra animation
+#' This function takes the list outputted by `animate_interval()` and generates
+#' a GIF animation. It is a simple wrapper around the `gganimate::animate()`
+#' function with some defaults. The generated GIF can be saved using the
+#' `anim_save()` function.
 #'
+#' @param anim List outputted by the `animate_interval()` function containing
+#' a `gganim` object and  the number of states in the animation.
+#' @param nframes Number of frames. Defaults to double the number of states
+#' in the animation.
+#' @param duration The duration of animation. Defaults to the number of states
+#' in the animation.
+#' @param ... Extra arguments passed to `gganimate::animate()`.
+#'
+#'
+#' @examples \dontrun{
+#'   # Generate animation
+#'   gen.animation(anim)
+#'
+#'   # Save animation
+#'   anim_save("<Path to destination folder>")
+#' }
 #' @export
 gen.animation <- function(anim, nframes = 2*anim$nstates, duration = anim$nstate, ...) {
   animate(anim$animation, nframes = nframes, duration = duration, ...)
