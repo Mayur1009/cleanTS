@@ -18,6 +18,7 @@ Package Description
 ``` r
 # Install release version from CRAN
 install.packages("cleanTS")
+
 # Install development version from GitHub
 devtools::install_github("Mayur1009/cleanTS")
 ```

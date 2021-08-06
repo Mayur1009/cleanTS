@@ -5,7 +5,7 @@ template:
     bootswatch: cosmo
 
 reference:
-  - title: "Functions"
+  - title: "Main Functions"
     contents:
     - cleanTS
     - animate_interval
@@ -13,6 +13,10 @@ reference:
     - print.cleanTS
     - gen.animation
     - gen.report
+    - mergecsv
+
+  - title: "Helpers"
+    contents:
     - check_input
     - missing_timestamps
     - duplicate_timestamps
