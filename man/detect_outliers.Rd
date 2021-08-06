@@ -2,17 +2,24 @@
 % Please edit documentation in R/outlier_detection.R
 \name{detect_outliers}
 \alias{detect_outliers}
-\title{This function detects outliers in the data.}
+\title{Find outliers in the data}
 \usage{
 detect_outliers(dt, replace_outlier, imp_methods)
 }
 \arguments{
-\item{dt}{Input data}
+\item{dt}{A data.table.}
 
-\item{replace_outlier}{Should the detected outliers be removed and imputated using the given imputation methods.}
+\item{replace_outlier}{Boolean, defaults to \code{TRUE}. Specify if the outliers
+are to be removed and imputated.}
 
-\item{imp_methods}{Imputation methods}
+\item{imp_methods}{The imputation methods to be used.}
+}
+\value{
+The outliers found in the data. If the outliers are replaced,
+then the imputation errors are also returned.
 }
 \description{
-This function detects outliers in the data.
+This function detects outliers/anomalies in the data. If the
+\code{replace_outlier} argument is set to \code{TRUE}, then the outliers are removed
+and imputated using the provided imputation methods.
 }

@@ -2,13 +2,18 @@
 % Please edit documentation in R/duplicate_timestamps.R
 \name{duplicate_timestamps}
 \alias{duplicate_timestamps}
-\title{This function finds the duplicate timestamps in the time columns of the data.}
+\title{Duplicate Timestamps}
 \usage{
 duplicate_timestamps(dt)
 }
 \arguments{
 \item{dt}{Input data}
 }
+\value{
+A list of data.table without duplicate timestamps and the
+duplicate timestamps.
+}
 \description{
-This function finds the duplicate timestamps in the time columns of the data.
+This function finds and removes the duplicate timestamps in the time columns
+of the data.
 }

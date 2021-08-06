@@ -2,6 +2,7 @@
 #'
 #' `animate_interval()` creates an animated plot using a `cleanTS` object
 #' and a interval.
+#'
 #' @param obj A *cleanTS* object.
 #' @param interval A numeric or character, specifying the viewing interval.
 #'

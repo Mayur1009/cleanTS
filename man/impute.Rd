@@ -2,15 +2,19 @@
 % Please edit documentation in R/missing_values.R
 \name{impute}
 \alias{impute}
-\title{This function handles missing values in the data.}
+\title{Handle missing values in the data}
 \usage{
 impute(dt, methods)
 }
 \arguments{
-\item{dt}{Input data}
+\item{dt}{A data.table.}
 
-\item{methods}{Imputation methods}
+\item{methods}{The imputation methods to be used.}
+}
+\value{
+A data.table with missing data imputed, and the imputation errors.
 }
 \description{
-This function handles missing values in the data.
+This function handles missing values in the data. It compares various
+imputation methods and finds the best one for imputation.
 }

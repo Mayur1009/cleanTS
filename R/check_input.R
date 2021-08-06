@@ -1,13 +1,25 @@
-#' This function is used to check and verify the input data to the package.
-#' The package need a univariate time series as input.
-#' This function keeps the first 2 columns, 1st is renamed as time and other is renamed as value.
+#' Check input data
 #'
-#' @param df Input data.
-#' @param dt_format The format of the time column in the input data.
-#' @param time Name of the column to use as time.
-#' @param value Name of column to use as value(observations).
+#' This function is used to check and verify the input data given as input.
+#' The package needs a univariate time series as input. This function keeps
+#' the first 2 columns, first is renamed as time and second is renamed as value.
+#' If the optional `time` and `value` arguments are provided then they are used
+#' to determine the relevant columns in the data.
 #'
-#' @return Data containing 2 columns, time and value. Time column is POSIX object and value is double
+#' @param df A data frame containg the input data. If it contains more than
+#' two columns then specify the names of time and value columns using the
+#' `time` and `value` arguments.
+#' @param dt_format Format of timestamps used in the data. It uses lubridate
+#' formats as mentioned [here](https://lubridate.tidyverse.org/reference/parse_date_time.html#details).
+#' @param time The name of column in provided data to be used as time column.
+#' @param value The name of column in provided data, to be used as
+#' value(observations) column.
+#'
+#' @return
+#' Data containing 2 columns, time and value. Time column is converted to
+#' POSIX object and value to numeric.
+#'
+
 check_input <- function(df, dt_format, time, value) {
 
   # setDT(df)
@@ -15,9 +27,9 @@ check_input <- function(df, dt_format, time, value) {
 
   tab <- as.data.table(df)
 
-  if(xor(is.null(time), is.null(value))) {
+  if (xor(is.null(time), is.null(value))) {
     stop("Either the time or value argument was passed. Both the arguments time and value should be provided.")
-  } else if(is.null(time) && is.null(value)) {
+  } else if (is.null(time) && is.null(value)) {
     if (ncol(df) > 2) {
       print(paste0("Input contains more than 2 columns. Discarding rows 3 to ", ncol(df), "."))
       tab <- df[, 1:2]
@@ -28,7 +40,7 @@ check_input <- function(df, dt_format, time, value) {
 
   names(tab) <- c("time", "value")
 
-  if(any(is.na(tab$time))) {
+  if (any(is.na(tab$time))) {
     stop("The time column contains NA.")
   }
 

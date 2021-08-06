@@ -2,13 +2,19 @@
 % Please edit documentation in R/missing_timestamps.R
 \name{missing_timestamps}
 \alias{missing_timestamps}
-\title{This function finds the missing timestamps in the time columns of the data.}
+\title{Missing timestamps}
 \usage{
 missing_timestamps(dt)
 }
 \arguments{
 \item{dt}{Input data}
 }
+\value{
+A list of data.table with inserted missing timestamps and the
+missing timestamps.
+}
 \description{
-This function finds the missing timestamps in the time columns of the data.
+This function finds and inserts the missing timestamps in the time columns
+of the data. The observations for the inserted timestamps are filled with
+\code{NA}.
 }

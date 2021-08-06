@@ -6,7 +6,7 @@
 #' @param obj A *cleanTS* object.
 #' @param interval A numeric or character, specifying the viewing interval.
 #'
-#' #' @examples
+#' @examples
 #' \dontrun{
 #'   interact_plot(cts, interval = "1 week")
 #' }

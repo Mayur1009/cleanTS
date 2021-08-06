@@ -18,7 +18,8 @@ cleanTS(
 two columns then specify the names of time and value columns using the
 \code{time} and \code{value} arguments.}
 
-\item{date_format}{Format of timestamps used in the data. It uses lubridate formats as mentioned \href{https://lubridate.tidyverse.org/reference/parse_date_time.html#details}{here}.}
+\item{date_format}{Format of timestamps used in the data. It uses lubridate
+formats as mentioned \href{https://lubridate.tidyverse.org/reference/parse_date_time.html#details}{here}.}
 
 \item{imp_methods}{The imputation methods to be used.}
 

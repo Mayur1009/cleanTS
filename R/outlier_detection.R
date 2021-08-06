@@ -1,7 +1,16 @@
-#' This function detects outliers in the data.
-#' @param dt Input data
-#' @param replace_outlier Should the detected outliers be removed and imputated using the given imputation methods.
-#' @param imp_methods Imputation methods
+#' Find outliers in the data
+#'
+#' This function detects outliers/anomalies in the data. If the
+#' `replace_outlier` argument is set to `TRUE`, then the outliers are removed
+#' and imputated using the provided imputation methods.
+#'
+#' @param dt A data.table.
+#' @param replace_outlier Boolean, defaults to `TRUE`. Specify if the outliers
+#' are to be removed and imputated.
+#' @param imp_methods The imputation methods to be used.
+#'
+#' @return The outliers found in the data. If the outliers are replaced,
+#' then the imputation errors are also returned.
 #'
 #' @import magrittr
 #'
@@ -20,7 +29,7 @@ detect_outliers <- function(dt, replace_outlier, imp_methods) {
   ano[, "is_outlier" := ifelse(anomaly == "Yes", T, F)]
   df <- ano[is_outlier == T, c("time", "value")]
 
-  if(!replace_outlier | nrow(df) == 0) {
+  if (!replace_outlier | nrow(df) == 0) {
     return(
       list(
         "outliers" = df[, "method_used" := NA][, "orig_value" := value],

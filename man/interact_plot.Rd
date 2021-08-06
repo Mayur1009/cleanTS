@@ -9,14 +9,15 @@ interact_plot(obj, interval)
 \arguments{
 \item{obj}{A \emph{cleanTS} object.}
 
-\item{interval}{A numeric or character, specifying the viewing interval.
-
-#' @examples
-\dontrun{
-  interact_plot(cts, interval = "1 week")
-}}
+\item{interval}{A numeric or character, specifying the viewing interval.}
 }
 \description{
 Interactive plot is similar to the animated plot, but gives the used some
 control over the animation. It runs a shinyApp instead of creating a GIF.
+}
+\examples{
+\dontrun{
+  interact_plot(cts, interval = "1 week")
+}
+
 }

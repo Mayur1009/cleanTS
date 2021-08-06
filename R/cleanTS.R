@@ -8,7 +8,8 @@
 #' @param data A data frame containg the input data. If it contains more than
 #' two columns then specify the names of time and value columns using the
 #' `time` and `value` arguments.
-#' @param date_format Format of timestamps used in the data. It uses lubridate formats as mentioned [here](https://lubridate.tidyverse.org/reference/parse_date_time.html#details).
+#' @param date_format Format of timestamps used in the data. It uses lubridate
+#' formats as mentioned [here](https://lubridate.tidyverse.org/reference/parse_date_time.html#details).
 #' @param imp_methods The imputation methods to be used.
 #' @param time The name of column in provided data to be used as time column.
 #' @param value The name of column in provided data, to be used as value column.

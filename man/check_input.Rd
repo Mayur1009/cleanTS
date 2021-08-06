@@ -2,26 +2,31 @@
 % Please edit documentation in R/check_input.R
 \name{check_input}
 \alias{check_input}
-\title{This function is used to check and verify the input data to the package.
-The package need a univariate time series as input.
-This function keeps the first 2 columns, 1st is renamed as time and other is renamed as value.}
+\title{Check input data}
 \usage{
 check_input(df, dt_format, time, value)
 }
 \arguments{
-\item{df}{Input data.}
+\item{df}{A data frame containg the input data. If it contains more than
+two columns then specify the names of time and value columns using the
+\code{time} and \code{value} arguments.}
 
-\item{dt_format}{The format of the time column in the input data.}
+\item{dt_format}{Format of timestamps used in the data. It uses lubridate
+formats as mentioned \href{https://lubridate.tidyverse.org/reference/parse_date_time.html#details}{here}.}
 
-\item{time}{Name of the column to use as time.}
+\item{time}{The name of column in provided data to be used as time column.}
 
-\item{value}{Name of column to use as value(observations).}
+\item{value}{The name of column in provided data, to be used as
+value(observations) column.}
 }
 \value{
-Data containing 2 columns, time and value. Time column is POSIX object and value is double
+Data containing 2 columns, time and value. Time column is converted to
+POSIX object and value to numeric.
 }
 \description{
-This function is used to check and verify the input data to the package.
-The package need a univariate time series as input.
-This function keeps the first 2 columns, 1st is renamed as time and other is renamed as value.
+This function is used to check and verify the input data given as input.
+The package needs a univariate time series as input. This function keeps
+the first 2 columns, first is renamed as time and second is renamed as value.
+If the optional \code{time} and \code{value} arguments are provided then they are used
+to determine the relevant columns in the data.
 }

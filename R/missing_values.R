@@ -1,7 +1,13 @@
-#' This function handles missing values in the data.
-#' @param dt Input data
-#' @param methods Imputation methods
+#' Handle missing values in the data
 #'
+#' This function handles missing values in the data. It compares various
+#' imputation methods and finds the best one for imputation.
+#'
+#'
+#' @param dt A data.table.
+#' @param methods The imputation methods to be used.
+#'
+#' @return A data.table with missing data imputed, and the imputation errors.
 #'
 
 impute <- function(dt, methods) {
