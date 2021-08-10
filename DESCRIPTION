@@ -28,17 +28,18 @@ Imports:
     gganimate,
     ggplot2,
     ggtext,
-    gifski,
+    transformr,
     glue,
     imputeTestbench,
     imputeTS,
     lubridate,
-    magrittr,
     shiny,
     stringr,
     tibble,
-    tibbletime,
-    transformr
+    tibbletime
+Suggests:
+    gifski(>= 1.4.3),
+    timetk
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

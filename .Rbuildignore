@@ -9,3 +9,4 @@
 ^tests/testthat/assets/site-dot-github/.github$
 ^\.github$
 ^pkgdown$
+^files_to_remove$

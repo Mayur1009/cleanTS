@@ -14,18 +14,24 @@ cleanTS(
 )
 }
 \arguments{
-\item{data}{A data frame containg the input data. If it contains more than
+\item{data}{A data frame containg the input data. By default, it considers
+that the first column to contain the timestamps and the second column
+contains the observations.If that is not the case or if it contains more than
 two columns then specify the names of time and value columns using the
 \code{time} and \code{value} arguments.}
 
 \item{date_format}{Format of timestamps used in the data. It uses lubridate
-formats as mentioned \href{https://lubridate.tidyverse.org/reference/parse_date_time.html#details}{here}.}
+formats as mentioned
+\href{https://lubridate.tidyverse.org/reference/parse_date_time.html#details}{here}.
+More than one formats can be using a vectors of strings.}
 
 \item{imp_methods}{The imputation methods to be used.}
 
-\item{time}{The name of column in provided data to be used as time column.}
+\item{time}{Optional, the name of column in provided data to be used as
+time column.}
 
-\item{value}{The name of column in provided data, to be used as value column.}
+\item{value}{Optional, the name of column in provided data, to be used as
+value column.}
 
 \item{replace_outliers}{Boolean, if \code{TRUE} then the outliers found will be
 removed and imputed using the given imputation methods.}
@@ -48,8 +54,17 @@ converting the timestamps to proper format, imputation of missing values,
 handling outliers, etc.
 }
 \examples{
-\dontrun{
-  cts <- cleanTS(data = data, date_format = c("dmyHMS"), replace_outliers = F)
-}
+# Convert sunspots.month to dataframe
+data <- timetk::tk_tbl(sunspot.month)
+print(data)
+
+# Randomly insert missing values to simulate missing value imputation
+set.seed(10)
+ind <- sample(nrow(data), 100)
+data$value[ind] <- NA
+
+# Perform cleaning
+cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
+print(cts)
 
 }

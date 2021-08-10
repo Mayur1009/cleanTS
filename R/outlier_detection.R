@@ -12,19 +12,30 @@
 #' @return The outliers found in the data. If the outliers are replaced,
 #' then the imputation errors are also returned.
 #'
-#' @import magrittr
-#'
-#'
+#' @importFrom data.table setnames
 
 detect_outliers <- function(dt, replace_outlier, imp_methods) {
-  time <- anomaly <- is_outlier <- value <- NULL
+  time <- anomaly <- is_outlier <- value <- remainder <- NULL
 
   tbl <- tibbletime::as_tbl_time(dt, index = time)
-  ano <- tbl %>%
-    anomalize::time_decompose(.data$value, message = F) %>%
-    anomalize::anomalize(.data$remainder) %>%
-    anomalize::time_recompose() %>%
-    as.data.table
+
+  ano <- as.data.table(
+    anomalize::time_recompose(
+      anomalize::anomalize(
+        data = anomalize::time_decompose(
+          data = tbl,
+          target = value,
+          message = F
+        ),
+        target = remainder
+      )
+    )
+  )
+  # ano <- tbl %>%
+  #   anomalize::time_decompose(.data$value, message = F) %>%
+  #   anomalize::anomalize(.data$remainder) %>%
+  #   anomalize::time_recompose() %>%
+  #   as.data.table
   setnames(ano, c("observed"), c("value"))
   ano[, "is_outlier" := ifelse(anomaly == "Yes", T, F)]
   df <- ano[is_outlier == T, c("time", "value")]

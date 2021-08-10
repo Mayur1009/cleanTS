@@ -18,9 +18,9 @@
 #'
 #' @import ggplot2
 #' @import transformr
-#' @import gifski
 #' @import glue
 #' @import stringr
+#' @importFrom data.table .N
 #'
 #' @export
 
@@ -50,7 +50,9 @@ animate_interval <- function(obj, interval) {
   labx <- ifelse(
     is.character(interval),
     interval,
-    as.character(paste(interval, units(dif)))
+    as.character(paste(interval))
+    # as.character(paste(interval, units(dif)))
+    # TODO: units(dif) will not work. think of an alternative.
   )
   p <- ggplot() +
     geom_line(
@@ -91,7 +93,7 @@ animate_interval <- function(obj, interval) {
 
 # Caption generator (HTML and markdown)
 capgen <- function(data, miss_ts, dup_ts) {
-  tc <- textConnection("str", "w")
+  tc <- textConnection("str", "w", local = T)
   sink(tc)
   reportHelper(data, miss_ts, dup_ts)
   sink()

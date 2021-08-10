@@ -12,7 +12,8 @@ two columns then specify the names of time and value columns using the
 \code{time} and \code{value} arguments.}
 
 \item{dt_format}{Format of timestamps used in the data. It uses lubridate
-formats as mentioned \href{https://lubridate.tidyverse.org/reference/parse_date_time.html#details}{here}.}
+formats as mentioned
+\href{https://lubridate.tidyverse.org/reference/parse_date_time.html#details}{here}.}
 
 \item{time}{The name of column in provided data to be used as time column.}
 

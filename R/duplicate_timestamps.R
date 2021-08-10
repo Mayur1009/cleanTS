@@ -3,12 +3,12 @@
 #' This function finds and removes the duplicate timestamps in the time columns
 #' of the data.
 #'
-#'
 #' @param dt Input data
 #'
 #' @return A list of data.table without duplicate timestamps and the
 #' duplicate timestamps.
 #'
+#' @importFrom data.table copy data.table .N
 #'
 duplicate_timestamps <- function(dt) {
   time <- N <- NULL

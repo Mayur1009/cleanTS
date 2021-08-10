@@ -10,7 +10,8 @@
 #' two columns then specify the names of time and value columns using the
 #' `time` and `value` arguments.
 #' @param dt_format Format of timestamps used in the data. It uses lubridate
-#' formats as mentioned [here](https://lubridate.tidyverse.org/reference/parse_date_time.html#details).
+#' formats as mentioned
+#' [here](https://lubridate.tidyverse.org/reference/parse_date_time.html#details).
 #' @param time The name of column in provided data to be used as time column.
 #' @param value The name of column in provided data, to be used as
 #' value(observations) column.
@@ -19,23 +20,29 @@
 #' Data containing 2 columns, time and value. Time column is converted to
 #' POSIX object and value to numeric.
 #'
+#' @importFrom lubridate parse_date_time
+#' @importFrom data.table as.data.table ":="
+#'
 
 check_input <- function(df, dt_format, time, value) {
-
-  # setDT(df)
-  # tab <- copy(df)
 
   tab <- as.data.table(df)
 
   if (xor(is.null(time), is.null(value))) {
-    stop("Either the time or value argument was passed. Both the arguments time and value should be provided.")
+    stop("Either the time or value argument was passed.
+         Both the arguments time and value should be provided.")
   } else if (is.null(time) && is.null(value)) {
     if (ncol(df) > 2) {
-      print(paste0("Input contains more than 2 columns. Discarding rows 3 to ", ncol(df), "."))
-      tab <- df[, 1:2]
+      print(
+        paste0(
+          "Input contains more than 2 columns. Discarding rows 3 to ",
+          ncol(df), "."
+        )
+      )
+      tab <- tab[, 1:2]
     }
   } else {
-    tab <- df[, c(time, value), with = F]
+    tab <- tab[, c(time, value), with = F]
   }
 
   names(tab) <- c("time", "value")
@@ -44,7 +51,7 @@ check_input <- function(df, dt_format, time, value) {
     stop("The time column contains NA.")
   }
 
-  tab[, "time" := lubridate::parse_date_time(time, orders = dt_format)]
+  tab[, "time" := parse_date_time(time, orders = dt_format)]
   tab[, "value" := as.numeric(value)]
 
   # TODO:

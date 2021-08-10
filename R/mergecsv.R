@@ -10,6 +10,7 @@
 #' @return Merged `data.table`.
 #'
 #' @import stringr
+#' @importFrom data.table fread
 #'
 #' @export
 #'
@@ -26,9 +27,7 @@ mergecsv <- function(path, formats) {
   }
 
   all_files <- dir(path, recursive = F)
-  csv_files <-
-    all_files[str_ends(all_files, ".csv")] %>%
-    str_c(path, .)
+  csv_files <- str_c(path, all_files[str_ends(all_files, ".csv")])
 
   dts <- lapply(
     csv_files,

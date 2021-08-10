@@ -13,6 +13,7 @@
 #'
 #' @import shiny
 #' @import ggplot2
+#' @importFrom data.table setcolorder rbindlist
 #'
 #' @export
 interact_plot <- function(obj, interval) {

@@ -5,35 +5,53 @@
 #' converting the timestamps to proper format, imputation of missing values,
 #' handling outliers, etc.
 #'
-#' @param data A data frame containg the input data. If it contains more than
+#' @param data A data frame containg the input data. By default, it considers
+#' that the first column to contain the timestamps and the second column
+#' contains the observations.If that is not the case or if it contains more than
 #' two columns then specify the names of time and value columns using the
 #' `time` and `value` arguments.
 #' @param date_format Format of timestamps used in the data. It uses lubridate
-#' formats as mentioned [here](https://lubridate.tidyverse.org/reference/parse_date_time.html#details).
+#'  formats as mentioned
+#' [here](https://lubridate.tidyverse.org/reference/parse_date_time.html#details).
+#'  More than one formats can be using a vectors of strings.
 #' @param imp_methods The imputation methods to be used.
-#' @param time The name of column in provided data to be used as time column.
-#' @param value The name of column in provided data, to be used as value column.
+#' @param time Optional, the name of column in provided data to be used as
+#'  time column.
+#' @param value Optional, the name of column in provided data, to be used as
+#'  value column.
 #' @param replace_outliers Boolean, if `TRUE` then the outliers found will be
-#' removed and imputed using the given imputation methods.
+#'  removed and imputed using the given imputation methods.
 #'
-#' @return
-#' A `cleanTS` object which contains:
-#' * Cleaned data
-#' * Missing timestamps
-#' * Duplicate timestamps
-#' * Imputation errors
-#' * Outliers
-#' * Outlier imputation errors
+#' @return A `cleanTS` object which contains:
+#'  * Cleaned data
+#'  * Missing timestamps
+#'  * Duplicate timestamps
+#'  * Imputation errors
+#'  * Outliers
+#'  * Outlier imputation errors
 #'
 #' @examples
-#' \dontrun{
-#'   cts <- cleanTS(data = data, date_format = c("dmyHMS"), replace_outliers = F)
-#' }
+#' # Convert sunspots.month to dataframe
+#' data <- timetk::tk_tbl(sunspot.month)
+#' print(data)
 #'
-#' @import data.table
+#' # Randomly insert missing values to simulate missing value imputation
+#' set.seed(10)
+#' ind <- sample(nrow(data), 100)
+#' data$value[ind] <- NA
+#'
+#' # Perform cleaning
+#' cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
+#' print(cts)
 #'
 #' @export
-cleanTS <- function(data, date_format, imp_methods = c("na_interpolation", "na_locf", "na_ma", "na_kalman"), time = NULL, value = NULL, replace_outliers = T) {
+cleanTS <- function(
+    data, date_format,
+    imp_methods = c("na_interpolation", "na_locf", "na_ma", "na_kalman"),
+    time = NULL, value = NULL,
+    replace_outliers = T
+  ) {
+
   is_outlier <- NULL
 
   repo <- list()
@@ -59,10 +77,15 @@ cleanTS <- function(data, date_format, imp_methods = c("na_interpolation", "na_l
     clean_data[time %in% outliers$time, "value"] <- outliers$value
   }
 
-  clean_data <- imp$imp_best[clean_data, on = c("time", "value")][, "is_outlier" := ifelse(time %in% outliers$time, T, F)]
+  clean_data <- imp$imp_best[clean_data,
+                             on = c("time", "value")
+                             ][,
+                               "is_outlier" :=
+                                 ifelse(time %in% outliers$time, T, F)
+                               ]
+
   clean_data[is_outlier == T, c("method_used")] <- outliers[, c("method_used")]
 
-  # TODO: Needs lots of memory. Remove useless things.
   res <- structure(
     list(
       "clean_data" = clean_data,

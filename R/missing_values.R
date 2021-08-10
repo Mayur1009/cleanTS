@@ -9,11 +9,13 @@
 #'
 #' @return A data.table with missing data imputed, and the imputation errors.
 #'
+#' @importFrom data.table copy
+#'
 
 impute <- function(dt, methods) {
-  values <- imp <- value <- type <- method_used <- time <- missing_type <- NULL
+  values <- imp <- value <- missing_type <- NULL
 
-  orig_dt <- df <- copy(dt)
+  df <- copy(dt)
 
   # Add Index column
   df[, i := seq_len(nrow(df))]
@@ -73,7 +75,7 @@ impute <- function(dt, methods) {
 
   if (permar > 0) {
     mar_err <- data.frame(
-        imputeTestbench::impute_errors(
+      imputeTestbench::impute_errors(
         df$value,
         smps = "mar",
         missPercentFrom = permar,
@@ -87,20 +89,26 @@ impute <- function(dt, methods) {
   }
 
   # Filter NAs, add columns for method used and type(mar, mcar)
-  nas <-
-    df[
-      , imp := imputed
-    ][
-      is.na(value)
-    ][
-      , "missing_type" := ifelse(i %in% mcar$from, "mcar", "mar")
-    ][
-      , "method_used" := ifelse(missing_type == "mcar", best_mcar_name, best_mar_name)
-    ][
-      , "value" := imp
-    ][
-      , c("time", "value", "missing_type", "method_used")
-    ]
+  nas <- df[
+    ,
+    imp := imputed
+  ][is.na(value)][
+    ,
+    "missing_type" := ifelse(i %in% mcar$from, "mcar", "mar")
+  ][
+    ,
+    "method_used" := ifelse(
+      missing_type == "mcar",
+      best_mcar_name,
+      best_mar_name
+    )
+  ][
+    ,
+    "value" := imp
+  ][
+    ,
+    c("time", "value", "missing_type", "method_used")
+  ]
 
   res <- list(
     "imp_best" = nas,
