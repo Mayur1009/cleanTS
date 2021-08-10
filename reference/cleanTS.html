@@ -137,14 +137,18 @@ handling outliers, etc.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A data frame containg the input data. If it contains more than
+      <td><p>A data frame containg the input data. By default, it considers
+that the first column to contain the timestamps and the second column
+contains the observations.If that is not the case or if it contains more than
 two columns then specify the names of time and value columns using the
 <code>time</code> and <code>value</code> arguments.</p></td>
     </tr>
     <tr>
       <th>date_format</th>
       <td><p>Format of timestamps used in the data. It uses lubridate
-formats as mentioned <a href='https://lubridate.tidyverse.org/reference/parse_date_time.html#details'>here</a>.</p></td>
+formats as mentioned
+<a href='https://lubridate.tidyverse.org/reference/parse_date_time.html#details'>here</a>.
+More than one formats can be using a vectors of strings.</p></td>
     </tr>
     <tr>
       <th>imp_methods</th>
@@ -152,11 +156,13 @@ formats as mentioned <a href='https://lubridate.tidyverse.org/reference/parse_da
     </tr>
     <tr>
       <th>time</th>
-      <td><p>The name of column in provided data to be used as time column.</p></td>
+      <td><p>Optional, the name of column in provided data to be used as
+time column.</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>The name of column in provided data, to be used as value column.</p></td>
+      <td><p>Optional, the name of column in provided data, to be used as
+value column.</p></td>
     </tr>
     <tr>
       <th>replace_outliers</th>
@@ -178,10 +184,98 @@ removed and imputed using the given imputation methods.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='va'>cts</span> <span class='op'>&lt;-</span> <span class='fu'>cleanTS</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data</span>, date_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dmyHMS"</span><span class='op'>)</span>, replace_outliers <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span>
-<span class='op'>}</span>
+    <pre class="examples"><div class='input'><span class='co'># Convert sunspots.month to dataframe</span>
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>timetk</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/timetk/man/tk_tbl.html'>tk_tbl</a></span><span class='op'>(</span><span class='va'>sunspot.month</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `type_convert()` only converts columns of type 'character'.</span>
+#&gt; <span class='warning'>- `df` has no columns of type 'character'</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3,177 × 2</span>
+#&gt;    index     value
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;yearmon&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> Jan 1749   58  
+#&gt; <span style='color: #BCBCBC;'> 2</span> Feb 1749   62.6
+#&gt; <span style='color: #BCBCBC;'> 3</span> Mar 1749   70  
+#&gt; <span style='color: #BCBCBC;'> 4</span> Apr 1749   55.7
+#&gt; <span style='color: #BCBCBC;'> 5</span> May 1749   85  
+#&gt; <span style='color: #BCBCBC;'> 6</span> Jun 1749   83.5
+#&gt; <span style='color: #BCBCBC;'> 7</span> Jul 1749   94.8
+#&gt; <span style='color: #BCBCBC;'> 8</span> Aug 1749   66.3
+#&gt; <span style='color: #BCBCBC;'> 9</span> Sep 1749   75.9
+#&gt; <span style='color: #BCBCBC;'>10</span> Oct 1749   75.5
+#&gt; <span style='color: #949494;'># … with 3,167 more rows</span></div><div class='input'>
+<span class='co'># Randomly insert missing values to simulate missing value imputation</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>, <span class='fl'>100</span><span class='op'>)</span>
+<span class='va'>data</span><span class='op'>$</span><span class='va'>value</span><span class='op'>[</span><span class='va'>ind</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
 
+<span class='co'># Perform cleaning</span>
+<span class='va'>cts</span> <span class='op'>&lt;-</span> <span class='fu'>cleanTS</span><span class='op'>(</span><span class='va'>data</span>, date_format <span class='op'>=</span> <span class='st'>"my"</span>, time <span class='op'>=</span> <span class='st'>"index"</span>, value <span class='op'>=</span> <span class='st'>"value"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `type_convert()` only converts columns of type 'character'.</span>
+#&gt; <span class='warning'>- `df` has no columns of type 'character'</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cts</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $clean_data
+#&gt; <span style='color: #949494;'># A tibble: 3,177 × 5</span>
+#&gt;    time                value missing_type method_used is_outlier
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>     
+#&gt; <span style='color: #BCBCBC;'> 1</span> 1749-01-01 <span style='color: #949494;'>00:00:00</span>  58   <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'> 2</span> 1749-02-01 <span style='color: #949494;'>00:00:00</span>  62.6 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'> 3</span> 1749-03-01 <span style='color: #949494;'>00:00:00</span>  70   <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'> 4</span> 1749-04-01 <span style='color: #949494;'>00:00:00</span>  55.7 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'> 5</span> 1749-05-01 <span style='color: #949494;'>00:00:00</span>  85   <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'> 6</span> 1749-06-01 <span style='color: #949494;'>00:00:00</span>  83.5 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'> 7</span> 1749-07-01 <span style='color: #949494;'>00:00:00</span>  94.8 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'> 8</span> 1749-08-01 <span style='color: #949494;'>00:00:00</span>  66.3 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'> 9</span> 1749-09-01 <span style='color: #949494;'>00:00:00</span>  75.9 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #BCBCBC;'>10</span> 1749-10-01 <span style='color: #949494;'>00:00:00</span>  75.5 <span style='color: #BB0000;'>NA</span>           <span style='color: #BB0000;'>NA</span>          FALSE     
+#&gt; <span style='color: #949494;'># … with 3,167 more rows</span>
+#&gt; 
+#&gt; $missing_ts
+#&gt; POSIXct of length 0
+#&gt; 
+#&gt; $duplicate_ts
+#&gt; POSIXct of length 0
+#&gt; 
+#&gt; $imp_methods
+#&gt; [1] "na_interpolation, na_locf, na_ma, na_kalman"
+#&gt; 
+#&gt; $mcar_err
+#&gt; <span style='color: #949494;'># A tibble: 1 × 4</span>
+#&gt;   na_interpolation na_locf na_ma na_kalman
+#&gt;              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>             2.30    2.92  2.25      2.25
+#&gt; 
+#&gt; $mar_err
+#&gt; <span style='color: #949494;'># A tibble: 1 × 4</span>
+#&gt;   na_interpolation na_locf na_ma na_kalman
+#&gt;              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>            0.299   0.407 0.263     0.268
+#&gt; 
+#&gt; $outliers
+#&gt; <span style='color: #949494;'># A tibble: 39 × 4</span>
+#&gt;    time                value orig_value method_used
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      
+#&gt; <span style='color: #BCBCBC;'> 1</span> 1749-11-01 <span style='color: #949494;'>00:00:00</span>  78.4       159. na_ma      
+#&gt; <span style='color: #BCBCBC;'> 2</span> 1769-09-01 <span style='color: #949494;'>00:00:00</span> 111.        149. na_kalman  
+#&gt; <span style='color: #BCBCBC;'> 3</span> 1769-10-01 <span style='color: #949494;'>00:00:00</span> 111.        158. na_kalman  
+#&gt; <span style='color: #BCBCBC;'> 4</span> 1769-11-01 <span style='color: #949494;'>00:00:00</span> 110.        148. na_kalman  
+#&gt; <span style='color: #BCBCBC;'> 5</span> 1771-05-01 <span style='color: #949494;'>00:00:00</span>  79.9       153. na_ma      
+#&gt; <span style='color: #BCBCBC;'> 6</span> 1777-12-01 <span style='color: #949494;'>00:00:00</span> 122.        157. na_kalman  
+#&gt; <span style='color: #BCBCBC;'> 7</span> 1778-01-01 <span style='color: #949494;'>00:00:00</span> 122.        177. na_kalman  
+#&gt; <span style='color: #BCBCBC;'> 8</span> 1778-05-01 <span style='color: #949494;'>00:00:00</span> 141.        239. na_kalman  
+#&gt; <span style='color: #BCBCBC;'> 9</span> 1778-06-01 <span style='color: #949494;'>00:00:00</span> 143.        172. na_kalman  
+#&gt; <span style='color: #BCBCBC;'>10</span> 1778-09-01 <span style='color: #949494;'>00:00:00</span> 145.        172. na_ma      
+#&gt; <span style='color: #949494;'># … with 29 more rows</span>
+#&gt; 
+#&gt; $outlier_mcar_err
+#&gt; <span style='color: #949494;'># A tibble: 1 × 4</span>
+#&gt;   na_interpolation na_locf na_ma na_kalman
+#&gt;              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>            0.968    1.18 0.956     0.958
+#&gt; 
+#&gt; $outlier_mar_err
+#&gt; <span style='color: #949494;'># A tibble: 1 × 4</span>
+#&gt;   na_interpolation na_locf na_ma na_kalman
+#&gt;              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span>             1.38    1.63  1.44      1.26
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

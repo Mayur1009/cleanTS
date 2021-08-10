@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check input data — check_input • cleanTS</title>
+<title>Helper function to find the time difference between two given timestamps. — find_dif • cleanTS</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,8 @@
 
 
 
-<meta property="og:title" content="Check input data — check_input" />
-<meta property="og:description" content="This function is used to check and verify the input data given as input.
-The package needs a univariate time series as input. This function keeps
-the first 2 columns, first is renamed as time and second is renamed as value.
-If the optional time and value arguments are provided then they are used
-to determine the relevant columns in the data." />
+<meta property="og:title" content="Helper function to find the time difference between two given timestamps. — find_dif" />
+<meta property="og:description" content="Helper function to find the time difference between two given timestamps." />
 
 
 
@@ -112,51 +108,35 @@ to determine the relevant columns in the data." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check input data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Mayur1009/cleanTS/blob/master/R/check_input.R'><code>R/check_input.R</code></a></small>
-    <div class="hidden name"><code>check_input.Rd</code></div>
+    <h1>Helper function to find the time difference between two given timestamps.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Mayur1009/cleanTS/blob/master/R/missing_timestamps.R'><code>R/missing_timestamps.R</code></a></small>
+    <div class="hidden name"><code>find_dif.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function is used to check and verify the input data given as input.
-The package needs a univariate time series as input. This function keeps
-the first 2 columns, first is renamed as time and second is renamed as value.
-If the optional <code>time</code> and <code>value</code> arguments are provided then they are used
-to determine the relevant columns in the data.</p>
+    <p>Helper function to find the time difference between two given timestamps.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_input</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>dt_format</span>, <span class='va'>time</span>, <span class='va'>value</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>find_dif</span><span class='op'>(</span><span class='va'>time1</span>, <span class='va'>time2</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df</th>
-      <td><p>A data frame containg the input data. If it contains more than
-two columns then specify the names of time and value columns using the
-<code>time</code> and <code>value</code> arguments.</p></td>
+      <th>time1</th>
+      <td><p>POSIXt or Date object.</p></td>
     </tr>
     <tr>
-      <th>dt_format</th>
-      <td><p>Format of timestamps used in the data. It uses lubridate
-formats as mentioned
-<a href='https://lubridate.tidyverse.org/reference/parse_date_time.html#details'>here</a>.</p></td>
-    </tr>
-    <tr>
-      <th>time</th>
-      <td><p>The name of column in provided data to be used as time column.</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>The name of column in provided data, to be used as
-value(observations) column.</p></td>
+      <th>time2</th>
+      <td><p>POSIXt or Date object.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data containing 2 columns, time and value. Time column is converted to
-POSIX object and value to numeric.</p>
+    <p>String, specifying the time interval between <code>time1</code> and <code>time2</code>.
+It contains a integer and the unit, for e.g., <em>5 weeks</em>, <em>6 months</em>,
+<em>14 hours</em>, etc.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
