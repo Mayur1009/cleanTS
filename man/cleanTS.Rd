@@ -66,5 +66,4 @@ data$value[ind] <- NA
 # Perform cleaning
 cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
 print(cts)
-
 }

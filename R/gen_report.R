@@ -1,9 +1,24 @@
-#' Generate a report
+#' Generate a report.
 #'
 #' `gen.report()` generates a report of the entire process and the changes made
 #' to the original data.
 #'
 #' @param obj A *cleanTS* object.
+#'
+#' @examples
+#' # Convert sunspots.month to dataframe
+#' data <- timetk::tk_tbl(sunspot.month)
+#'
+#' # Randomly insert missing values to simulate missing value imputation
+#' set.seed(10)
+#' ind <- sample(nrow(data), 100)
+#' data$value[ind] <- NA
+#'
+#' # Perform cleaning
+#' cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
+#'
+#' gen.report(cts)
+#'
 #' @export
 gen.report <- function(obj) {
   is_outlier <- missing_type <- NULL

@@ -16,8 +16,9 @@ Print method for \code{cleanTS} class.
 }
 \examples{
 \dontrun{
-  cts <- cleanTS(data, "dmyHMS")
-  print(cts)
+# Using the same data as in `cleanTS()` function example.
+cts <- cleanTS(data, "my")
+print(cts)
 }
 
 }

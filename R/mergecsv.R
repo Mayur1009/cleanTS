@@ -9,19 +9,20 @@
 #'
 #' @return Merged `data.table`.
 #'
-#' @import stringr
-#' @importFrom data.table fread
+#' @importFrom stringr str_c str_ends
+#' @importFrom data.table fread merge.data.table
+#' @importFrom lubridate parse_date_time
 #'
 #' @export
 #'
 
 mergecsv <- function(path, formats) {
-  . <- time <- NULL
+  time <- NULL
   if (!dir.exists(path)) {
     stop("Path not found.")
   }
 
-  # Is this same for windows??
+  # TODO: Is this same for windows??
   if (!str_ends(path, "/")) {
     path <- str_c(path, "/")
   }
@@ -34,7 +35,7 @@ mergecsv <- function(path, formats) {
     function(x) {
       dt <- fread(x)
       names(dt)[1] <- "time"
-      dt[, "time" := lubridate::parse_date_time(time, orders = formats)]
+      dt[, "time" := parse_date_time(time, orders = formats)]
     }
   )
 

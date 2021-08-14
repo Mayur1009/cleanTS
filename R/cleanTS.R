@@ -43,15 +43,12 @@
 #' # Perform cleaning
 #' cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
 #' print(cts)
-#'
 #' @export
-cleanTS <- function(
-    data, date_format,
-    imp_methods = c("na_interpolation", "na_locf", "na_ma", "na_kalman"),
-    time = NULL, value = NULL,
-    replace_outliers = T
-  ) {
-
+cleanTS <- function(data, date_format,
+                    imp_methods = c("na_interpolation", "na_locf",
+                                    "na_ma", "na_kalman"),
+                    time = NULL, value = NULL,
+                    replace_outliers = T) {
   is_outlier <- NULL
 
   repo <- list()
@@ -78,11 +75,12 @@ cleanTS <- function(
   }
 
   clean_data <- imp$imp_best[clean_data,
-                             on = c("time", "value")
-                             ][,
-                               "is_outlier" :=
-                                 ifelse(time %in% outliers$time, T, F)
-                               ]
+    on = c("time", "value")
+  ][
+    ,
+    "is_outlier" :=
+      ifelse(time %in% outliers$time, T, F)
+  ]
 
   clean_data[is_outlier == T, c("method_used")] <- outliers[, c("method_used")]
 
@@ -113,11 +111,12 @@ cleanTS <- function(
 #'
 #' @examples
 #' \dontrun{
-#'   cts <- cleanTS(data, "dmyHMS")
-#'   print(cts)
+#' # Using the same data as in `cleanTS()` function example.
+#' cts <- cleanTS(data, "my")
+#' print(cts)
 #' }
 #'
-#' @import tibble
+#' @importFrom tibble as_tibble
 #'
 #' @export
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gen_report.R
 \name{gen.report}
 \alias{gen.report}
-\title{Generate a report}
+\title{Generate a report.}
 \usage{
 gen.report(obj)
 }
@@ -12,4 +12,19 @@ gen.report(obj)
 \description{
 \code{gen.report()} generates a report of the entire process and the changes made
 to the original data.
+}
+\examples{
+# Convert sunspots.month to dataframe
+data <- timetk::tk_tbl(sunspot.month)
+
+# Randomly insert missing values to simulate missing value imputation
+set.seed(10)
+ind <- sample(nrow(data), 100)
+data$value[ind] <- NA
+
+# Perform cleaning
+cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
+
+gen.report(cts)
+
 }

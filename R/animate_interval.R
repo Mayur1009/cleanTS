@@ -12,9 +12,20 @@
 #' * nstates: The number of states in the animation.
 #'
 #' @examples
-#' \dontrun{
-#'   anim <- animate_interval(cts, interval = "1 week")
-#' }
+#' # Convert sunspots.month to dataframe
+#' data <- timetk::tk_tbl(sunspot.month)
+#'
+#' # Randomly insert missing values to simulate missing value imputation
+#' set.seed(10)
+#' ind <- sample(nrow(data), 100)
+#' data$value[ind] <- NA
+#'
+#' # Perform cleaning
+#' cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
+#'
+#' # Create a `gganim` using `animate_interval()` function
+#' a <- animate_interval(cts, "10 year")
+#'
 #'
 #' @import ggplot2
 #' @import transformr
@@ -81,9 +92,26 @@ animate_interval <- function(obj, interval) {
 
   anim <- p +
     theme_bw() +
-    labs(x = labx, y = "value", caption = "State No: {next_state}<br>{caption_lst[next_state]}") +
-    theme(text = element_text(size = 12), legend.text = element_text(size = 12), plot.caption = ggtext::element_markdown(hjust = 0, size = 12, lineheight = 1.2)) +
-    gganimate::transition_states(state, transition_length = 1, state_length = 3) +
+    labs(
+      x = labx,
+      y = "value",
+      caption = "State No: {next_state}<br>{caption_lst[next_state]}"
+    ) +
+    theme(
+      text = element_text(size = 12),
+      legend.text = element_text(size = 12),
+      plot.caption = ggtext::element_markdown(
+        hjust = 0,
+        size = 12,
+        lineheight = 1.2
+      )
+    )
+  anim <- anim +
+    gganimate::transition_states(
+      state,
+      transition_length = 1,
+      state_length = 3
+    ) +
     gganimate::shadow_mark(alpha = alpha / 10) +
     # shadow_wake(10/last_state, wrap = F, size = NULL) +
     gganimate::exit_fade()
@@ -152,12 +180,15 @@ reportHelper <- function(data, miss_ts, dup_ts) {
 #' @param ... Extra arguments passed to `gganimate::animate()`.
 #'
 #'
-#' @examples \dontrun{
-#'   # Generate animation
-#'   gen.animation(anim)
+#' @examples
+#' \dontrun{
+#' a <- animate_interval(cts, "10 year")
 #'
-#'   # Save animation
-#'   anim_save("<Path to destination folder>")
+#' # Generate animation using `gen.animation()`
+#' gen.animation(a, height = 700, width = 900)
+#'
+#' # Save animation using `anim_save()`
+#' anim_save("filename.gif")
 #' }
 #' @export
 gen.animation <- function(anim, nframes = 2*anim$nstates, duration = anim$nstate, ...) {

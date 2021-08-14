@@ -17,7 +17,8 @@ control over the animation. It runs a shinyApp instead of creating a GIF.
 }
 \examples{
 \dontrun{
-  interact_plot(cts, interval = "1 week")
+# Using the same data used in `cleanTS()` function example.
+interact_plot(cts, interval = "1 week")
 }
 
 }

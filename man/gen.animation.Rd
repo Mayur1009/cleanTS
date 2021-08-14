@@ -26,10 +26,12 @@ function with some defaults. The generated GIF can be saved using the
 }
 \examples{
 \dontrun{
-  # Generate animation
-  gen.animation(anim)
+a <- animate_interval(cts, "10 year")
 
-  # Save animation
-  anim_save("<Path to destination folder>")
+# Generate animation using `gen.animation()`
+gen.animation(a, height = 700, width = 900)
+
+# Save animation using `anim_save()`
+anim_save("filename.gif")
 }
 }

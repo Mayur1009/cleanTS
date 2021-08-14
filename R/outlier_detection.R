@@ -13,6 +13,7 @@
 #' then the imputation errors are also returned.
 #'
 #' @importFrom data.table setnames
+#' @importFrom anomalize anomalize time_decompose time_recompose
 
 detect_outliers <- function(dt, replace_outlier, imp_methods) {
   time <- anomaly <- is_outlier <- value <- remainder <- NULL
@@ -20,9 +21,9 @@ detect_outliers <- function(dt, replace_outlier, imp_methods) {
   tbl <- tibbletime::as_tbl_time(dt, index = time)
 
   ano <- as.data.table(
-    anomalize::time_recompose(
-      anomalize::anomalize(
-        data = anomalize::time_decompose(
+    time_recompose(
+      data = anomalize(
+        data = time_decompose(
           data = tbl,
           target = value,
           message = F
@@ -31,11 +32,6 @@ detect_outliers <- function(dt, replace_outlier, imp_methods) {
       )
     )
   )
-  # ano <- tbl %>%
-  #   anomalize::time_decompose(.data$value, message = F) %>%
-  #   anomalize::anomalize(.data$remainder) %>%
-  #   anomalize::time_recompose() %>%
-  #   as.data.table
   setnames(ano, c("observed"), c("value"))
   ano[, "is_outlier" := ifelse(anomaly == "Yes", T, F)]
   df <- ano[is_outlier == T, c("time", "value")]

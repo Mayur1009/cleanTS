@@ -10,3 +10,4 @@
 ^\.github$
 ^pkgdown$
 ^files_to_remove$
+^README_files$
