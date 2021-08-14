@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate a report — gen.report • cleanTS</title>
+<title>Generate a report. — gen.report • cleanTS</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Generate a report — gen.report" />
+<meta property="og:title" content="Generate a report. — gen.report" />
 <meta property="og:description" content="gen.report() generates a report of the entire process and the changes made
 to the original data." />
 
@@ -109,7 +109,7 @@ to the original data." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate a report</h1>
+    <h1>Generate a report.</h1>
     <small class="dont-index">Source: <a href='https://github.com/Mayur1009/cleanTS/blob/master/R/gen_report.R'><code>R/gen_report.R</code></a></small>
     <div class="hidden name"><code>gen.report.Rd</code></div>
     </div>
@@ -131,6 +131,201 @@ to the original data.</p>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Convert sunspots.month to dataframe</span>
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>timetk</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/timetk/man/tk_tbl.html'>tk_tbl</a></span><span class='op'>(</span><span class='va'>sunspot.month</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `type_convert()` only converts columns of type 'character'.</span>
+#&gt; <span class='warning'>- `df` has no columns of type 'character'</span></div><div class='input'>
+<span class='co'># Randomly insert missing values to simulate missing value imputation</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>, <span class='fl'>100</span><span class='op'>)</span>
+<span class='va'>data</span><span class='op'>$</span><span class='va'>value</span><span class='op'>[</span><span class='va'>ind</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+
+<span class='co'># Perform cleaning</span>
+<span class='va'>cts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='cleanTS.html'>cleanTS</a></span><span class='op'>(</span><span class='va'>data</span>, date_format <span class='op'>=</span> <span class='st'>"my"</span>, time <span class='op'>=</span> <span class='st'>"index"</span>, value <span class='op'>=</span> <span class='st'>"value"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `type_convert()` only converts columns of type 'character'.</span>
+#&gt; <span class='warning'>- `df` has no columns of type 'character'</span></div><div class='input'>
+<span class='fu'>gen.report</span><span class='op'>(</span><span class='va'>cts</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; # Summary of cleaned data: 
+#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt;    0.00   15.70   42.20   51.39   76.24  210.90 
+#&gt; 
+#&gt; # Missing timestamps:  0 
+#&gt; 
+#&gt; No missing timestamps found.
+#&gt; 
+#&gt; # Duplicate timestamps:  0 
+#&gt; 
+#&gt; No duplicate timestamps found.
+#&gt; 
+#&gt; # Missing Values:  100 (3.14762354422411%)
+#&gt; 
+#&gt; ## MCAR:  98 (3.08467107333963%)
+#&gt;  MCAR Errors:
+#&gt;   na_interpolation  na_locf    na_ma na_kalman
+#&gt; 1         2.300924 2.920063 2.253687  2.254928
+#&gt; 
+#&gt;           time       value method_used
+#&gt;  1: 1751-09-01  44.2766667       na_ma
+#&gt;  2: 1764-12-01  25.8133333       na_ma
+#&gt;  3: 1771-03-01  76.2366667       na_ma
+#&gt;  4: 1777-08-01 101.8500000       na_ma
+#&gt;  5: 1777-11-01 133.2857143       na_ma
+#&gt;  6: 1779-08-01 124.8600000       na_ma
+#&gt;  7: 1781-10-01  57.9666667       na_ma
+#&gt;  8: 1785-03-01  14.4100000       na_ma
+#&gt;  9: 1789-02-01 119.3866667       na_ma
+#&gt; 10: 1789-11-01 111.1966667       na_ma
+#&gt; 11: 1793-04-01  52.7900000       na_ma
+#&gt; 12: 1799-02-01  10.4366667       na_ma
+#&gt; 13: 1803-08-01  45.7866667       na_ma
+#&gt; 14: 1804-06-01  39.7666667       na_ma
+#&gt; 15: 1808-04-01   6.7133333       na_ma
+#&gt; 16: 1809-09-01   0.6733333       na_ma
+#&gt; 17: 1812-07-01   5.8800000       na_ma
+#&gt; 18: 1820-05-01  14.9857143       na_ma
+#&gt; 19: 1820-08-01  11.7678571       na_ma
+#&gt; 20: 1821-03-01   7.7400000       na_ma
+#&gt; 21: 1823-11-01   9.0700000       na_ma
+#&gt; 22: 1826-06-01  37.1200000       na_ma
+#&gt; 23: 1827-10-01  49.7633333       na_ma
+#&gt; 24: 1833-05-01   5.6566667       na_ma
+#&gt; 25: 1834-08-01  13.5500000       na_ma
+#&gt; 26: 1837-03-01 157.3766667       na_ma
+#&gt; 27: 1838-04-01 121.9733333       na_ma
+#&gt; 28: 1842-01-01  27.5133333       na_ma
+#&gt; 29: 1842-09-01  28.1466667       na_ma
+#&gt; 30: 1853-07-01  41.4433333       na_ma
+#&gt; 31: 1856-06-01   3.5133333       na_ma
+#&gt; 32: 1860-09-01  98.6466667       na_ma
+#&gt; 33: 1862-03-01  62.2750000       na_ma
+#&gt; 34: 1862-06-01  64.5285714       na_ma
+#&gt; 35: 1864-05-01  50.7600000       na_ma
+#&gt; 36: 1865-05-01  33.5206897       na_ma
+#&gt; 37: 1865-09-01  26.5241379       na_ma
+#&gt; 38: 1869-01-01  60.7833333       na_ma
+#&gt; 39: 1872-08-01 107.8666667       na_ma
+#&gt; 40: 1878-01-01   6.4933333       na_ma
+#&gt; 41: 1878-12-01   2.1466667       na_ma
+#&gt; 42: 1879-07-01   6.9366667       na_ma
+#&gt; 43: 1881-10-01  55.3533333       na_ma
+#&gt; 44: 1882-12-01  63.5966667       na_ma
+#&gt; 45: 1884-08-01  54.8500000       na_ma
+#&gt; 46: 1886-02-01  38.2733333       na_ma
+#&gt; 47: 1888-03-01   8.0666667       na_ma
+#&gt; 48: 1889-07-01   9.3482759       na_ma
+#&gt; 49: 1889-11-01   5.6931034       na_ma
+#&gt; 50: 1894-07-01  81.5033333       na_ma
+#&gt; 51: 1895-11-01  60.2666667       na_ma
+#&gt; 52: 1904-11-01  53.5033333       na_ma
+#&gt; 53: 1909-10-01  41.4833333       na_ma
+#&gt; 54: 1912-06-01   3.7266667       na_ma
+#&gt; 55: 1912-11-01   4.8366667       na_ma
+#&gt; 56: 1913-11-01   2.7200000       na_ma
+#&gt; 57: 1916-01-01  51.0600000       na_ma
+#&gt; 58: 1917-06-01 112.6833333       na_ma
+#&gt; 59: 1920-09-01  32.3733333       na_ma
+#&gt; 60: 1921-10-01  20.8233333       na_ma
+#&gt; 61: 1922-11-01   9.0571429       na_ma
+#&gt; 62: 1923-02-01   6.3750000       na_ma
+#&gt; 63: 1924-11-01  19.6766667       na_ma
+#&gt; 64: 1927-01-01  78.9833333       na_ma
+#&gt; 65: 1931-07-01  17.7300000       na_ma
+#&gt; 66: 1935-08-01  42.0100000       na_ma
+#&gt; 67: 1937-01-01 113.3900000       na_ma
+#&gt; 68: 1942-02-01  42.6833333       na_ma
+#&gt; 69: 1943-05-01  18.2964286       na_ma
+#&gt; 70: 1943-08-01  11.1607143       na_ma
+#&gt; 71: 1946-08-01 100.0933333       na_ma
+#&gt; 72: 1956-03-01 110.7900000       na_ma
+#&gt; 73: 1958-01-01 205.0500000       na_ma
+#&gt; 74: 1963-07-01  34.9678571       na_ma
+#&gt; 75: 1963-10-01  27.6500000       na_ma
+#&gt; 76: 1965-10-01  16.1633333       na_ma
+#&gt; 77: 1967-07-01  85.6900000       na_ma
+#&gt; 78: 1969-08-01  98.1100000       na_ma
+#&gt; 79: 1970-09-01  95.5666667       na_ma
+#&gt; 80: 1975-02-01  15.8862069       na_ma
+#&gt; 81: 1975-06-01  18.5068966       na_ma
+#&gt; 82: 1976-03-01  10.9366667       na_ma
+#&gt; 83: 1977-06-01  22.1433333       na_ma
+#&gt; 84: 1981-10-01 147.9366667       na_ma
+#&gt; 85: 1984-03-01  66.8066667       na_ma
+#&gt; 86: 1986-01-01  18.0333333       na_ma
+#&gt; 87: 1991-05-01 156.3266667       na_ma
+#&gt; 88: 1993-09-01  49.3100000       na_ma
+#&gt; 89: 1995-08-01  14.2733333       na_ma
+#&gt; 90: 1997-02-01  10.5600000       na_ma
+#&gt; 91: 1997-10-01  37.4133333       na_ma
+#&gt; 92: 1999-06-01  95.0800000       na_ma
+#&gt; 93: 2001-06-01 100.6033333       na_ma
+#&gt; 94: 2009-02-01   1.4066667       na_ma
+#&gt; 95: 2010-06-01  14.4100000       na_ma
+#&gt; 96: 2011-07-01  51.4464286       na_ma
+#&gt; 97: 2011-10-01  74.2321429       na_ma
+#&gt; 98: 2012-10-01  58.7400000       na_ma
+#&gt;           time       value method_used
+#&gt; 
+#&gt; 
+#&gt; ## MAR:  2 (0.0629524708844822%)
+#&gt;  MAR Errors:
+#&gt;   na_interpolation   na_locf     na_ma na_kalman
+#&gt; 1        0.2987542 0.4067764 0.2627405 0.2684011
+#&gt;          time    value method_used
+#&gt; 1: 1870-09-01 142.9773       na_ma
+#&gt; 2: 1870-10-01 137.1591       na_ma
+#&gt; 
+#&gt; # Outliers:  39 
+#&gt;           time     value orig_value method_used
+#&gt;  1: 1749-11-01  78.36000      158.6       na_ma
+#&gt;  2: 1769-09-01 111.43899      148.8   na_kalman
+#&gt;  3: 1769-10-01 110.94717      158.2   na_kalman
+#&gt;  4: 1769-11-01 110.45536      148.1   na_kalman
+#&gt;  5: 1771-05-01  79.92489      152.7       na_ma
+#&gt;  6: 1777-12-01 121.58513      157.3   na_kalman
+#&gt;  7: 1778-01-01 122.15039      177.3   na_kalman
+#&gt;  8: 1778-05-01 140.50773      238.9   na_kalman
+#&gt;  9: 1778-06-01 143.10817      171.6   na_kalman
+#&gt; 10: 1778-09-01 144.75185      171.7       na_ma
+#&gt; 11: 1836-12-01 129.44559      206.2   na_kalman
+#&gt; 12: 1837-01-01 133.82985      188.0   na_kalman
+#&gt; 13: 1837-02-01 138.21410      175.6   na_kalman
+#&gt; 14: 1847-09-01 112.70511      160.9   na_kalman
+#&gt; 15: 1847-10-01 117.18259      180.4   na_kalman
+#&gt; 16: 1848-01-01 113.98519      159.1       na_ma
+#&gt; 17: 1848-12-01 117.06583      159.5   na_kalman
+#&gt; 18: 1849-01-01 116.00395      157.0   na_kalman
+#&gt; 19: 1870-03-01 111.56325      157.5   na_kalman
+#&gt; 20: 1870-04-01 117.69739      160.0   na_kalman
+#&gt; 21: 1870-05-01 123.83153      176.0   na_kalman
+#&gt; 22: 1870-08-01 137.74276      153.8       na_ma
+#&gt; 23: 1871-04-01 126.67667      162.4       na_ma
+#&gt; 24: 1917-08-01 111.93778      154.5       na_ma
+#&gt; 25: 1938-07-01 106.08333      165.3       na_ma
+#&gt; 26: 1947-05-01 150.43929      201.3       na_ma
+#&gt; 27: 1947-08-01 158.95357      188.8       na_ma
+#&gt; 28: 1948-04-01 131.39333      189.7       na_ma
+#&gt; 29: 1949-02-01 133.82667      182.3       na_ma
+#&gt; 30: 1956-11-01 167.27667      201.3       na_ma
+#&gt; 31: 1957-09-01 183.70122      235.8   na_kalman
+#&gt; 32: 1957-10-01 190.37171      253.8   na_kalman
+#&gt; 33: 1957-12-01 196.77500      239.4       na_ma
+#&gt; 34: 1959-01-01 168.68000      217.4       na_ma
+#&gt; 35: 1979-09-01 164.78667      188.4       na_ma
+#&gt; 36: 1988-12-01 139.90667      179.2       na_ma
+#&gt; 37: 1989-06-01 142.06333      196.2       na_ma
+#&gt; 38: 1990-08-01 133.25333      200.3       na_ma
+#&gt; 39: 2000-07-01 122.11667      170.1       na_ma
+#&gt;           time     value orig_value method_used
+#&gt; ## Imputation errors while replacing outliers:
+#&gt; ### MCAR errors:
+#&gt;   na_interpolation  na_locf     na_ma na_kalman
+#&gt; 1        0.9684937 1.178242 0.9560119 0.9577365
+#&gt; ### MAR errors:
+#&gt;   na_interpolation  na_locf    na_ma na_kalman
+#&gt; 1         1.384013 1.627421 1.438257  1.256739</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

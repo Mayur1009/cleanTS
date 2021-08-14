@@ -152,11 +152,13 @@ in the animation.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='co'># Generate animation</span>
-  <span class='fu'>gen.animation</span><span class='op'>(</span><span class='va'>anim</span><span class='op'>)</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='animate_interval.html'>animate_interval</a></span><span class='op'>(</span><span class='va'>cts</span>, <span class='st'>"10 year"</span><span class='op'>)</span>
 
-  <span class='co'># Save animation</span>
-  <span class='fu'><a href='https://gganimate.com/reference/anim_save.html'>anim_save</a></span><span class='op'>(</span><span class='st'>"&lt;Path to destination folder&gt;"</span><span class='op'>)</span>
+<span class='co'># Generate animation using `gen.animation()`</span>
+<span class='fu'>gen.animation</span><span class='op'>(</span><span class='va'>a</span>, height <span class='op'>=</span> <span class='fl'>700</span>, width <span class='op'>=</span> <span class='fl'>900</span><span class='op'>)</span>
+
+<span class='co'># Save animation using `anim_save()`</span>
+<span class='fu'><a href='https://gganimate.com/reference/anim_save.html'>anim_save</a></span><span class='op'>(</span><span class='st'>"filename.gif"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

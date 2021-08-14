@@ -77,23 +77,90 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>Package Description</p>
+<p><code>cleanTS</code> package focuses on developing a tool for making the process of cleaning large datasets simple and efficient. Currently it solely focuses on data cleaning for univariate time series data. The package is integrated with already developed and deployed tools for missing value imputation. It also provides a way for visualizing data at different resolutions, allowing micro-scale visualization. The ultimate goal is the creation of a handy software tool that deals with the problems, processes, analysis and visualization of big data time series, with minimum human intervention.</p>
+<ul>
+<li><p><code><a href="reference/cleanTS.html">cleanTS()</a></code> checks the data for missing and duplicate timestamps, performs missing value imputation and removes anomalies/outliers from the data.</p></li>
+<li><p><code><a href="reference/animate_interval.html">animate_interval()</a></code> splits the data and generates an animated plot.</p></li>
+<li><p><code><a href="reference/interact_plot.html">interact_plot()</a></code> is similar to <code><a href="reference/animate_interval.html">animate_interval()</a></code> but creates an interactive plot which provides relatively more control over the animation.</p></li>
+</ul>
+<p>This project is a part to <a href="https://summerofcode.withgoogle.com/projects/#4626948166254592">Google Summer of Code 2021</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Install release version from CRAN</span>
+<code class="sourceCode R"><span class="co"># Install release version from CRAN (yet to be released)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"cleanTS"</span><span class="op">)</span>
 
 <span class="co"># Install development version from GitHub</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Mayur1009/cleanTS"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
+<div id="example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<p>Example and explanation</p>
-<!-- ## Code of conduct -->
-<!-- Please note that this project is released with a [Contributor Code of Conduct](https://pkgdown.r-lib.org/CODE_OF_CONDUCT.html). By participating in this project you agree to abide by its terms. -->
+<a href="#example" class="anchor"></a>Example</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Mayur1009/cleanTS">cleanTS</a></span><span class="op">)</span>
+<span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span>
+<span class="co">#&gt;   method            from</span>
+<span class="co">#&gt;   as.zoo.data.frame zoo</span>
+
+<span class="co"># Read sunspot.month dataset</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">timetk</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/timetk/man/tk_tbl.html">tk_tbl</a></span><span class="op">(</span><span class="va">sunspot.month</span><span class="op">)</span>
+<span class="co">#&gt; Warning: `type_convert()` only converts columns of type 'character'.</span>
+<span class="co">#&gt; - `df` has no columns of type 'character'</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 3,177 × 2</span>
+<span class="co">#&gt;    index     value</span>
+<span class="co">#&gt;    &lt;yearmon&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Jan 1749   58  </span>
+<span class="co">#&gt;  2 Feb 1749   62.6</span>
+<span class="co">#&gt;  3 Mar 1749   70  </span>
+<span class="co">#&gt;  4 Apr 1749   55.7</span>
+<span class="co">#&gt;  5 May 1749   85  </span>
+<span class="co">#&gt;  6 Jun 1749   83.5</span>
+<span class="co">#&gt;  7 Jul 1749   94.8</span>
+<span class="co">#&gt;  8 Aug 1749   66.3</span>
+<span class="co">#&gt;  9 Sep 1749   75.9</span>
+<span class="co">#&gt; 10 Oct 1749   75.5</span>
+<span class="co">#&gt; # … with 3,167 more rows</span>
+
+<span class="co"># Randomly insert missing values to simulate missing value imputation</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
+<span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>, <span class="fl">100</span><span class="op">)</span>
+<span class="va">data</span><span class="op">$</span><span class="va">value</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
+
+<span class="co"># Create `cleanTS` object</span>
+<span class="va">cts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cleanTS.html">cleanTS</a></span><span class="op">(</span><span class="va">data</span>, date_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"my"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Warning: `type_convert()` only converts columns of type 'character'.</span>
+<span class="co">#&gt; - `df` has no columns of type 'character'</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cts</span><span class="op">)</span>
+<span class="co">#&gt;                  Length Class      Mode     </span>
+<span class="co">#&gt; clean_data       5      data.table list     </span>
+<span class="co">#&gt; missing_ts       0      POSIXct    numeric  </span>
+<span class="co">#&gt; duplicate_ts     0      POSIXct    numeric  </span>
+<span class="co">#&gt; imp_methods      4      -none-     character</span>
+<span class="co">#&gt; mcar_err         4      data.frame list     </span>
+<span class="co">#&gt; mar_err          4      data.frame list     </span>
+<span class="co">#&gt; outliers         4      data.table list     </span>
+<span class="co">#&gt; outlier_mcar_err 4      data.frame list     </span>
+<span class="co">#&gt; outlier_mar_err  4      data.frame list</span>
+
+<span class="co"># Cleaned Data</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cts</span><span class="op">$</span><span class="va">clean_data</span><span class="op">)</span>
+<span class="co">#&gt;          time value missing_type method_used is_outlier</span>
+<span class="co">#&gt; 1: 1749-01-01  58.0         &lt;NA&gt;        &lt;NA&gt;      FALSE</span>
+<span class="co">#&gt; 2: 1749-02-01  62.6         &lt;NA&gt;        &lt;NA&gt;      FALSE</span>
+<span class="co">#&gt; 3: 1749-03-01  70.0         &lt;NA&gt;        &lt;NA&gt;      FALSE</span>
+<span class="co">#&gt; 4: 1749-04-01  55.7         &lt;NA&gt;        &lt;NA&gt;      FALSE</span>
+<span class="co">#&gt; 5: 1749-05-01  85.0         &lt;NA&gt;        &lt;NA&gt;      FALSE</span>
+<span class="co">#&gt; 6: 1749-06-01  83.5         &lt;NA&gt;        &lt;NA&gt;      FALSE</span>
+
+<span class="co"># Genearate animated plot</span>
+<span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/animate_interval.html">animate_interval</a></span><span class="op">(</span><span class="va">cts</span>, interval <span class="op">=</span> <span class="st">"10 year"</span><span class="op">)</span>
+<span class="fu"><a href="reference/gen.animation.html">gen.animation</a></span><span class="op">(</span><span class="va">a</span>, height <span class="op">=</span> <span class="fl">700</span>, width <span class="op">=</span> <span class="fl">900</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-Example-1.gif"><!-- --></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Generate interactive plot</span>
+<span class="fu"><a href="reference/interact_plot.html">interact_plot</a></span><span class="op">(</span><span class="va">cts</span>, interval <span class="op">=</span> <span class="st">"10 year"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
