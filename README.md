@@ -31,6 +31,12 @@ minimum human intervention.
     interactive plot which provides relatively more control over the
     animation.
 
+The package can also be used using a shiny application, available at
+<https://mayur1009.shinyapps.io/cleanTS/>.
+
+Package Documentation can be found at
+<https://mayur1009.github.io/cleanTS/>
+
 This project is a part to [Google Summer of Code
 2021](https://summerofcode.withgoogle.com/projects/#4626948166254592).
 
