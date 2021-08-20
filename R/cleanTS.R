@@ -5,7 +5,7 @@
 #' converting the timestamps to proper format, imputation of missing values,
 #' handling outliers, etc.
 #'
-#' @param data A data frame containg the input data. By default, it considers
+#' @param data A data frame containing the input data. By default, it considers
 #' that the first column to contain the timestamps and the second column
 #' contains the observations.If that is not the case or if it contains more than
 #' two columns then specify the names of time and value columns using the

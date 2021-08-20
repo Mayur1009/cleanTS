@@ -1,6 +1,6 @@
 Type: Package
 Package: cleanTS
-Title: Univariate Time Series Cleaning
+Title: Testbench for Univariate Time Series Cleaning
 Version: 0.1.0
 Authors@R: 
     c(person(given = "Mayur",
@@ -11,8 +11,12 @@ Authors@R:
       person(given = "Neeraj",
              family = "Bokde",
              role = "aut",
-             email = "neerajdhanraj@mpe.au.dk",
-             comment = c(ORCID = "0000-0002-3493-9302")))
+             email = "neerajdhanraj@gmail.com",
+             comment = c(ORCID = "0000-0002-3493-9302")),
+      person(given = "Andrés", 
+             family = "Feijóo-Lorenzo", 
+             role = "aut", 
+             email = "afeijoo@uvigo.gal"))
 Description: Package for automating univariate time series cleaning. It
     implements reliable and efficient procedures for automating the
     process of cleaning univariate time series data. The package provides
@@ -38,7 +42,8 @@ Imports:
     tibble,
     tibbletime
 Suggests:
-    gifski(>= 1.4.3),
+    rmarkdown,
+    gifski (>= 1.4.3),
     timetk
 Encoding: UTF-8
 LazyData: true

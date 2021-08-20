@@ -6,7 +6,7 @@
 #' If the optional `time` and `value` arguments are provided then they are used
 #' to determine the relevant columns in the data.
 #'
-#' @param df A data frame containg the input data. If it contains more than
+#' @param df A data frame containing the input data. If it contains more than
 #' two columns then specify the names of time and value columns using the
 #' `time` and `value` arguments.
 #' @param dt_format Format of timestamps used in the data. It uses lubridate

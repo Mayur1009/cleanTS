@@ -6,7 +6,7 @@
 #'
 #' @param dt A data.table.
 #' @param replace_outlier Boolean, defaults to `TRUE`. Specify if the outliers
-#' are to be removed and imputated.
+#' are to be removed and imputed.
 #' @param imp_methods The imputation methods to be used.
 #'
 #' @return The outliers found in the data. If the outliers are replaced,

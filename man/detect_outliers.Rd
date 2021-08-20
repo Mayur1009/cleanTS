@@ -10,7 +10,7 @@ detect_outliers(dt, replace_outlier, imp_methods)
 \item{dt}{A data.table.}
 
 \item{replace_outlier}{Boolean, defaults to \code{TRUE}. Specify if the outliers
-are to be removed and imputated.}
+are to be removed and imputed.}
 
 \item{imp_methods}{The imputation methods to be used.}
 }

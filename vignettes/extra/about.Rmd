@@ -1,0 +1,39 @@
+---
+title: "About"
+output: rmarkdown::html_vignette
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+### Student
+
+-   Name: Mayur Kishor Shende
+-   Email: [mayur.k.shende\@gmail.com](mailto:mayur.k.shende@gmail.com){.email}
+-   GitHub: <https://github.com/Mayur1009>
+-   LinkedIn: <http://www.linkedin.com/in/mayur1009>
+-   Institute: Government College of Engineering Nagpur, India
+
+### Mentors
+
+-   Evaluating Mentor:
+
+    -   Name: Neeraj Dhanraj Bokde
+    -   Email: [neerajdhanraj\@gmail.com](mailto:neerajdhanraj@gmail.com){.email}
+    -   GitHub: <https://github.com/neerajdhanraj>
+    -   Institute: Aarhus University, Denmark
+
+-   Co-mentor:
+
+    -   Name: Andrés E. Feijóo-Lorenzo
+    -   Email: [afeijoo\@uvigo.gal](mailto:afeijoo@uvigo.gal){.email}
+    -   Institute: University of Vigo, Spain
+
+# Acknowledgement
+***
+
+This project was part of [GSoC'21](https://summerofcode.withgoogle.com/projects/#4626948166254592). We are thankful to Google Summer of Code 2021 for sponsoring this project.

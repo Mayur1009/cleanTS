@@ -11,3 +11,7 @@
 ^pkgdown$
 ^files_to_remove$
 ^README_files$
+^vignettes/articles$
+^vignettes/extra$
+^revdep$
+^cran-comments\.md$

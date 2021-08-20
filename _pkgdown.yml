@@ -2,6 +2,28 @@ template:
   params:
     bootswatch: cosmo
 
+authors:
+  Mayur Shende:
+    href: https://github.com/Mayur1009
+  Neeraj Bokde:
+    href: https://github.com/neerajdhanraj
+  Andrés E. Feijóo-Lorenzo:
+    href: https://github.com/neerajdhanraj
+
+
+navbar:
+  left:
+    - icon: fa-home fa-lg
+      href: index.html
+    - text: Reference
+      href: reference/index.html
+    - text: About Us
+      href: articles/extra/about.html
+
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/Mayur1009/cleanTS
+
 reference:
   - title: "Main Functions"
     contents:
@@ -21,3 +43,4 @@ reference:
     - duplicate_timestamps
     - impute
     - detect_outliers
+

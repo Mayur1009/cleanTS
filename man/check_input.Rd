@@ -7,7 +7,7 @@
 check_input(df, dt_format, time, value)
 }
 \arguments{
-\item{df}{A data frame containg the input data. If it contains more than
+\item{df}{A data frame containing the input data. If it contains more than
 two columns then specify the names of time and value columns using the
 \code{time} and \code{value} arguments.}
 
