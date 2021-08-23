@@ -70,13 +70,13 @@ animate_interval <- function(obj, interval) {
       data = pdf_l,
       mapping = aes(x = X, y = value),
       alpha = 1,
-      na.rm = T
+      na.rm = TRUE
     ) +
     geom_point(
       data = pdf_l,
       mapping = aes(x = X, y = value),
       alpha = 0.75,
-      na.rm = T
+      na.rm = TRUE
       # color = "#404040"
     ) +
     geom_point(
@@ -85,7 +85,7 @@ animate_interval <- function(obj, interval) {
       alpha = 1,
       stroke = 2,
       size = 3,
-      na.rm = T
+      na.rm = TRUE
     ) +
     scale_shape_manual(values = c("missing_value" = 1, "outlier" = 4)) +
     coord_cartesian(xlim = c(0, max.X), ylim = c(min.value, max.value))
@@ -121,7 +121,7 @@ animate_interval <- function(obj, interval) {
 
 # Caption generator (HTML and markdown)
 capgen <- function(data, miss_ts, dup_ts) {
-  tc <- textConnection("str", "w", local = T)
+  tc <- textConnection("str", "w", local = TRUE)
   sink(tc)
   reportHelper(data, miss_ts, dup_ts)
   sink()
@@ -135,7 +135,7 @@ capgen <- function(data, miss_ts, dup_ts) {
 
 reportHelper <- function(data, miss_ts, dup_ts) {
   is_outlier <- missing_type <- time <- NULL
-  outliers <- data[is_outlier == T]
+  outliers <- data[is_outlier == TRUE]
   missing  <- data[!is.na(missing_type) & is_outlier == F]
   miss_ts  <- data[time %in% miss_ts]
   dup_ts   <- data[time %in% dup_ts]
@@ -179,6 +179,7 @@ reportHelper <- function(data, miss_ts, dup_ts) {
 #' in the animation.
 #' @param ... Extra arguments passed to `gganimate::animate()`.
 #'
+#' @return Does not return any value.
 #'
 #' @examples
 #' \dontrun{

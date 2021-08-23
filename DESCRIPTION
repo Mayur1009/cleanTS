@@ -14,15 +14,17 @@ Authors@R:
              email = "neerajdhanraj@gmail.com",
              comment = c(ORCID = "0000-0002-3493-9302")),
       person(given = "Andrés", 
-             family = "Feijóo-Lorenzo", 
+             family = "E. Feijóo-Lorenzo", 
              role = "aut", 
-             email = "afeijoo@uvigo.gal"))
-Description: Package for automating univariate time series cleaning. It
-    implements reliable and efficient procedures for automating the
-    process of cleaning univariate time series data. The package provides
-    integration with already developed and deployed tools for missing
-    value imputation and outlier detection. It also provides a way of
-    visualizing large time-series data in different resolutions.
+             email = "afeijoo@uvigo.gal",
+             comment = c(ORCID = "0000-0003-3172-7037")))
+Description: A reliable and efficient tool for cleaning univariate time 
+    series data. It implements reliable and efficient procedures for 
+    automating the process of cleaning univariate time series data. 
+    The package provides integration with already developed and deployed 
+    tools for missing value imputation and outlier detection. It also 
+    provides a way of visualizing large time-series data in different 
+    resolutions.
 License: GPL (>= 3)
 URL: https://github.com/Mayur1009/cleanTS
 BugReports: https://github.com/Mayur1009/cleanTS/issues

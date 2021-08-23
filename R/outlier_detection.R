@@ -34,7 +34,7 @@ detect_outliers <- function(dt, replace_outlier, imp_methods) {
   )
   setnames(ano, c("observed"), c("value"))
   ano[, "is_outlier" := ifelse(anomaly == "Yes", T, F)]
-  df <- ano[is_outlier == T, c("time", "value")]
+  df <- ano[is_outlier == TRUE, c("time", "value")]
 
   if (!replace_outlier | nrow(df) == 0) {
     return(
@@ -47,10 +47,10 @@ detect_outliers <- function(dt, replace_outlier, imp_methods) {
   }
 
   ret <- ano[, c("time", "value", "is_outlier")]
-  ret[, "orig_value" := value][is_outlier == T, "value" := NA]
+  ret[, "orig_value" := value][is_outlier == TRUE, "value" := NA]
   l <- impute(ret[, c("time", "value")], imp_methods)
-  ret[is_outlier == T, "value" := l$imp_best$value][is_outlier == T, "method_used" := l$imp_best$method_used]
-  ret <- ret[is_outlier == T, c("time", "value", "orig_value", "method_used")]
+  ret[is_outlier == TRUE, "value" := l$imp_best$value][is_outlier == TRUE, "method_used" := l$imp_best$method_used]
+  ret <- ret[is_outlier == TRUE, c("time", "value", "orig_value", "method_used")]
   return(
     list(
       "outliers" = ret,

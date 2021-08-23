@@ -5,6 +5,8 @@
 #'
 #' @param obj A *cleanTS* object.
 #'
+#'
+#' @return Does not return any value.
 #' @examples
 #' # Convert sunspots.month to dataframe
 #' data <- timetk::tk_tbl(sunspot.month)

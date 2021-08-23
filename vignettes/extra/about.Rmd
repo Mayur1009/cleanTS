@@ -1,6 +1,10 @@
 ---
 title: "About"
 output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{About}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -36,4 +40,4 @@ knitr::opts_chunk$set(
 # Acknowledgement
 ***
 
-This project was part of [GSoC'21](https://summerofcode.withgoogle.com/projects/#4626948166254592). We are thankful to Google Summer of Code 2021 for sponsoring this project.
+This project was part of [GSoC'21](https://summerofcode.withgoogle.com/projects/#4626948166254592). We are thankful to Google Summer of Code 2021 for sponsoring the project.

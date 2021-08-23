@@ -11,6 +11,9 @@ interact_plot(obj, interval)
 
 \item{interval}{A numeric or character, specifying the viewing interval.}
 }
+\value{
+Does not return any value.
+}
 \description{
 Interactive plot is similar to the animated plot, but gives the used some
 control over the animation. It runs a shinyApp instead of creating a GIF.

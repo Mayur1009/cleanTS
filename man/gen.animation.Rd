@@ -18,6 +18,9 @@ in the animation.}
 
 \item{...}{Extra arguments passed to \code{gganimate::animate()}.}
 }
+\value{
+Does not return any value.
+}
 \description{
 This function takes the list outputted by \code{animate_interval()} and generates
 a GIF animation. It is a simple wrapper around the \code{gganimate::animate()}

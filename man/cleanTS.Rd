@@ -10,7 +10,7 @@ cleanTS(
   imp_methods = c("na_interpolation", "na_locf", "na_ma", "na_kalman"),
   time = NULL,
   value = NULL,
-  replace_outliers = T
+  replace_outliers = TRUE
 )
 }
 \arguments{

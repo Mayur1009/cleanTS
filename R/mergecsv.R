@@ -39,7 +39,7 @@ mergecsv <- function(path, formats) {
     }
   )
 
-  mergedDT <- Reduce(function(x, y) merge(x, y, all = T), dts)
+  mergedDT <- Reduce(function(x, y) merge(x, y, all = TRUE), dts)
 
   mergedDT
 }

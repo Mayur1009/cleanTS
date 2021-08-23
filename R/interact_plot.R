@@ -6,6 +6,8 @@
 #' @param obj A *cleanTS* object.
 #' @param interval A numeric or character, specifying the viewing interval.
 #'
+#' @return Does not return any value.
+#'
 #' @examples
 #' \dontrun{
 #' # Using the same data used in `cleanTS()` function example.
@@ -53,19 +55,19 @@ interact_plot <- function(obj, interval) {
       geom_line(
         data = plot_l,
         mapping = aes(x = X, y = value),
-        na.rm = T
+        na.rm = TRUE
       ) +
       geom_point(
         data = plot_l,
         mapping = aes(x = X, y = value),
-        na.rm = T
+        na.rm = TRUE
       ) +
       geom_point(
         data = plot_p,
         mapping = aes(x = X, y = value, color = color, shape = shape),
         size = 2,
         stroke = 2,
-        na.rm = T
+        na.rm = TRUE
       ) +
       scale_shape_manual(values = c("missing_value" = 1, "outlier" = 4)) +
       coord_cartesian(xlim = c(0, max.X), ylim = c(min.value, max.value)) +
@@ -136,7 +138,7 @@ interact_plot <- function(obj, interval) {
               max = last_state,
               value = 1,
               step = 1,
-              animate = T,
+              animate = TRUE,
             ),
             actionButton("left", label = "Prev", icon = icon("backward")),
             actionButton("right", label = "Next", icon = icon("forward")),

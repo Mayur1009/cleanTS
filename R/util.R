@@ -6,7 +6,7 @@ prepare_plot_data <- function(obj, interval) {
 
   orig_data <- copy(obj$clean_data)
   orig_data[
-    is_outlier == T,
+    is_outlier == TRUE,
     c("value", "missing_type", "method_used") :=
       list(obj$outliers$orig_value, NA, NA)
   ]
@@ -46,7 +46,7 @@ prepare_plot_data <- function(obj, interval) {
   pdf_p <- imp_all[pdf_l,
     on = "time"
   ][
-    is_outlier == T,
+    is_outlier == TRUE,
     c("original_outlier", "replaced_outlier") :=
       list(obj$outliers$orig_value, obj$outliers$value)
   ]

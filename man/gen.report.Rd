@@ -9,6 +9,9 @@ gen.report(obj)
 \arguments{
 \item{obj}{A \emph{cleanTS} object.}
 }
+\value{
+Does not return any value.
+}
 \description{
 \code{gen.report()} generates a report of the entire process and the changes made
 to the original data.

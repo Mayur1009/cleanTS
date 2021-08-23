@@ -11,6 +11,9 @@
 
 \item{...}{Other arguments}
 }
+\value{
+Does not return any value.
+}
 \description{
 Print method for \code{cleanTS} class.
 }
