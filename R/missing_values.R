@@ -23,7 +23,7 @@ impute <- function(dt, methods) {
   # If no NAs
   if (!any(is.na(df$value))) {
     res <- list(
-      "imp_best" = data.table(time = double(), value = numeric()),
+      "imp_best" = data.table(time = double(), value = numeric(), missing_type = NA, method_used = NA),
       "mcar_err" = data.frame(),
       "mar_err" = data.frame()
     )
