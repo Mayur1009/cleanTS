@@ -13,8 +13,8 @@ gen.report(obj)
 Does not return any value.
 }
 \description{
-\code{gen.report()} generates a report of the entire process and the changes made
-to the original data.
+\code{gen.report()} generates a report of the entire process, the changes made
+to the original data and details about the impurities found in the data.
 }
 \examples{
 # Convert sunspots.month to dataframe

@@ -19,3 +19,10 @@ Merged \code{data.table}.
 single \emph{data.table}. It is assumed that the first column of all the CSVs
 contains the timestamps.
 }
+\details{
+All these files are read and the first column is parsed to a proper DateTime
+object using the formats given in the formats argu- ment. Then these
+dataframes are merged using the timestamp column as a common column. The
+merged data frame returned by the function contains the first column as the
+timestamps.
+}

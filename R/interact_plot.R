@@ -3,6 +3,18 @@
 #' Interactive plot is similar to the animated plot, but gives the used some
 #' control over the animation. It runs a shinyApp instead of creating a GIF.
 #'
+#' The problem with an animated plot is that the user does not have any control
+#' over the animation. There is not play or pause functionality so that the
+#' user can observe any desired frame. This can be achieved by adding
+#' interactivity to the plot. The `interact_plot()` function creates and runs a
+#' shiny widget locally on the machine. It takes the cleanTS object and splits
+#' the cleaned data according to the `interval` argument, similar to the
+#' `animate interval()` function. It then creates a shiny widget which shows the
+#' plot for the current state and gives a slider used to change the state.
+#' Unlike `animate_interval()` it provides a global report containing information
+#' about complete data, and a state report giving information about the current
+#' state shown in the plot.
+#'
 #' @param obj A *cleanTS* object.
 #' @param interval A numeric or character, specifying the viewing interval.
 #'

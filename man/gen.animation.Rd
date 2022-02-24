@@ -25,7 +25,12 @@ Does not return any value.
 This function takes the list outputted by \code{animate_interval()} and generates
 a GIF animation. It is a simple wrapper around the \code{gganimate::animate()}
 function with some defaults. The generated GIF can be saved using the
-\code{anim_save()} function.
+\code{anim_save()} function. By default, in the animate() function only 50 states
+in the data are shown. So, to avoid this gen.animation() defines the default
+value for the number of frames. Also, the duration argument has a default
+value equal to the number of states, making the animation slower. More
+arguments can be passed, which are then passed to animate(), like, height,
+width, fps, renderer, etc.
 }
 \examples{
 \dontrun{

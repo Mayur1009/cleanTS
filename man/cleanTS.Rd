@@ -51,7 +51,40 @@ A \code{cleanTS} object which contains:
 \code{cleanTS()}is the main function of the package which creates a cleanTS
 object. It performs all the different data cleaning tasks, such as
 converting the timestamps to proper format, imputation of missing values,
-handling outliers, etc.
+handling outliers, etc. It is a wrapper function that calls all the other
+internal functions to performs different data cleaning tasks.
+}
+\details{
+The first task is to check the input time series data for structural and
+data type-related errors. Since the functions need univariate time series
+data, the input data is checked for the number of columns. By default, the
+first column is considered to be the time column, and the second column to
+be the observations. Alternatively, if the time and value arguments are
+given, then those columns are used. The time column is converted to a POSIX
+object. The value column is converted to a numeric type. The column names
+are also changed to time and value. All the data is converted to a
+\emph{data.table} object. This data is then passed to other functions to
+check for missing and duplicate timestamps. If duplicate timestamps are
+found, then the observation values are checked. If the observations are the
+same, then only one copy of that observation is kept. But if the observations
+are different, then it is not possible to find the correct one, so the
+observation is set to NA. This data is the passed to a function for finding
+and handling missing observations. The methods given in the imp_methods
+argument are compared and selected. The MCAR and MAR values are handled
+seperately. After the best methods are found, imputation is performed using
+those methods. The user can also pass user-defined functions for comparison.
+The user-defined function should follow the structure as the default
+functions. It should take a numeric vector containing missing values as
+input, and return a numeric vector of the same length without missing values
+as output. Once the missing values are handled the data is checked for
+outliers. If the replace_outliers parameter is set to TRUE in the cleanTS()
+function, then the outliers are replaced by NA and imputed using the
+procedure mentioned for imputing missing values. Then it creates a cleanTS
+object which contains the cleaned data, missing timestamps, duplicate
+timestamps, imputation methods, MCAR imputation error, MAR imputation error,
+outliers, and if the outliers are replaced then imputation errors for those
+imputations are also included. The \emph{cleanTS} object is returned by the
+function.
 }
 \examples{
 # Convert sunspots.month to dataframe
