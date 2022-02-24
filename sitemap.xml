@@ -1,48 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cleanTS.com/index.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/animate_interval.html</loc>
+    <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/check_input.html</loc>
+    <loc>/articles/Read-more.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/cleanTS.html</loc>
+    <loc>/articles/extra/about.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/detect_outliers.html</loc>
+    <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/duplicate_timestamps.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/find_dif.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/gen.animation.html</loc>
+    <loc>/reference/animate_interval.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/gen.report.html</loc>
+    <loc>/reference/check_input.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/impute.html</loc>
+    <loc>/reference/cleanTS.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/interact_plot.html</loc>
+    <loc>/reference/detect_outliers.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/mergecsv.html</loc>
+    <loc>/reference/duplicate_timestamps.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/missing_timestamps.html</loc>
+    <loc>/reference/find_dif.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/print.cleanTS.html</loc>
+    <loc>/reference/gen.animation.html</loc>
   </url>
   <url>
-    <loc>https://cleanTS.com/reference/reexports.html</loc>
+    <loc>/reference/gen.report.html</loc>
+  </url>
+  <url>
+    <loc>/reference/impute.html</loc>
+  </url>
+  <url>
+    <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/interact_plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mergecsv.html</loc>
+  </url>
+  <url>
+    <loc>/reference/missing_timestamps.html</loc>
+  </url>
+  <url>
+    <loc>/reference/print.cleanTS.html</loc>
+  </url>
+  <url>
+    <loc>/reference/reexports.html</loc>
   </url>
 </urlset>

@@ -25,6 +25,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cleanTS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -58,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Mayur1009/cleanTS">
+  <a href="https://github.com/Mayur1009/cleanTS" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -75,9 +77,9 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="cleants" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#cleants" class="anchor"></a>cleanTS</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="cleants">cleanTS<a class="anchor" aria-label="anchor" href="#cleants"></a>
+</h1></div>
 <!-- badges: start -->
 
 <!-- badges: end -->
@@ -87,33 +89,33 @@
 <li><p><code><a href="reference/animate_interval.html">animate_interval()</a></code> splits the data and generates an animated plot.</p></li>
 <li><p><code><a href="reference/interact_plot.html">interact_plot()</a></code> is similar to <code><a href="reference/animate_interval.html">animate_interval()</a></code> but creates an interactive plot which provides relatively more control over the animation.</p></li>
 </ul>
-<p>The package can also be used using a shiny application, available at <a href="https://mayur1009.shinyapps.io/cleanTS/" class="uri">https://mayur1009.shinyapps.io/cleanTS/</a>.</p>
-<p>Package Documentation can be found at <a href="https://mayur1009.github.io/cleanTS/" class="uri">https://mayur1009.github.io/cleanTS/</a></p>
-<p>This project is a part to <a href="https://summerofcode.withgoogle.com/projects/#4626948166254592">Google Summer of Code 2021</a>.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<p>The package can also be used using a shiny application, available at <a href="https://mayur1009.shinyapps.io/cleanTS/" class="external-link uri">https://mayur1009.shinyapps.io/cleanTS/</a>.</p>
+<p>Package Documentation can be found at <a href="https://mayur1009.github.io/cleanTS/" class="external-link uri">https://mayur1009.github.io/cleanTS/</a></p>
+<p>This project is a part to <a href="https://summerofcode.withgoogle.com/projects/#4626948166254592" class="external-link">Google Summer of Code 2021</a>.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install release version from CRAN (yet to be released)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"cleanTS"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"cleanTS"</span><span class="op">)</span>
 
 <span class="co"># Install development version from GitHub</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Mayur1009/cleanTS"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Mayur1009/cleanTS">cleanTS</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Mayur1009/cleanTS" class="external-link">cleanTS</a></span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span>
 <span class="co">#&gt;   method            from</span>
 <span class="co">#&gt;   as.zoo.data.frame zoo</span>
 
 <span class="co"># Read sunspot.month dataset</span>
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">timetk</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/timetk/man/tk_tbl.html">tk_tbl</a></span><span class="op">(</span><span class="va">sunspot.month</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">timetk</span><span class="fu">::</span><span class="fu"><a href="https://business-science.github.io/timetk/reference/tk_tbl.html" class="external-link">tk_tbl</a></span><span class="op">(</span><span class="va">sunspot.month</span><span class="op">)</span>
 <span class="co">#&gt; Warning: `type_convert()` only converts columns of type 'character'.</span>
 <span class="co">#&gt; - `df` has no columns of type 'character'</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3,177 × 2</span>
 <span class="co">#&gt;    index     value</span>
 <span class="co">#&gt;    &lt;yearmon&gt; &lt;dbl&gt;</span>
@@ -130,15 +132,15 @@
 <span class="co">#&gt; # … with 3,167 more rows</span>
 
 <span class="co"># Randomly insert missing values to simulate missing value imputation</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>, <span class="fl">100</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
+<span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>, <span class="fl">100</span><span class="op">)</span>
 <span class="va">data</span><span class="op">$</span><span class="va">value</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
 
 <span class="co"># Create `cleanTS` object</span>
-<span class="va">cts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cleanTS.html">cleanTS</a></span><span class="op">(</span><span class="va">data</span>, date_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"my"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">cts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cleanTS.html">cleanTS</a></span><span class="op">(</span><span class="va">data</span>, date_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"my"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Warning: `type_convert()` only converts columns of type 'character'.</span>
 <span class="co">#&gt; - `df` has no columns of type 'character'</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cts</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cts</span><span class="op">)</span>
 <span class="co">#&gt;                  Length Class      Mode     </span>
 <span class="co">#&gt; clean_data       5      data.table list     </span>
 <span class="co">#&gt; missing_ts       0      POSIXct    numeric  </span>
@@ -151,7 +153,7 @@
 <span class="co">#&gt; outlier_mar_err  4      data.frame list</span>
 
 <span class="co"># Cleaned Data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cts</span><span class="op">$</span><span class="va">clean_data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cts</span><span class="op">$</span><span class="va">clean_data</span><span class="op">)</span>
 <span class="co">#&gt;          time value missing_type method_used is_outlier</span>
 <span class="co">#&gt; 1: 1749-01-01  58.0         &lt;NA&gt;        &lt;NA&gt;      FALSE</span>
 <span class="co">#&gt; 2: 1749-02-01  62.6         &lt;NA&gt;        &lt;NA&gt;      FALSE</span>
@@ -173,52 +175,62 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=cleanTS">https://​cloud.r-project.org/​package=cleanTS</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/Mayur1009/cleanTS/">https://​github.com/​Mayur1009/​cleanTS/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/Mayur1009/cleanTS/issues">https://​github.com/​Mayur1009/​cleanTS/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=cleanTS" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/Mayur1009/cleanTS/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/Mayur1009/cleanTS/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small>GPL (&gt;= 3)</small></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://github.com/Mayur1009">Mayur Shende</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1738-2573" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>
-<a href="https://github.com/neerajdhanraj">Neeraj Bokde</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3493-9302" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Andrés E. Feijóo-Lorenzo <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3172-7037" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing cleanTS</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=cleanTS"><img src="https://www.r-pkg.org/badges/version/cleanTS" alt="CRAN status"></a></li>
-<li><a href="https://github.com/Mayur1009/cleanTS/actions"><img src="https://github.com/Mayur1009/cleanTS/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li>
+<a href="https://github.com/Mayur1009" class="external-link">Mayur Shende</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1738-2573" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://github.com/neerajdhanraj" class="external-link">Neeraj Bokde</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3493-9302" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Andrés E. Feijóo-Lorenzo <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3172-7037" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=cleanTS" class="external-link"><img src="https://www.r-pkg.org/badges/version/cleanTS" alt="CRAN status"></a></li>
+<li><a href="https://github.com/Mayur1009/cleanTS/actions" class="external-link"><img src="https://github.com/Mayur1009/cleanTS/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://github.com/Mayur1009">Mayur Shende</a>, <a href="https://github.com/neerajdhanraj">Neeraj Bokde</a>, Andrés E. Feijóo-Lorenzo.</p>
+  <p></p>
+<p>Developed by <a href="https://github.com/Mayur1009" class="external-link">Mayur Shende</a>, <a href="https://github.com/neerajdhanraj" class="external-link">Neeraj Bokde</a>, Andrés E. Feijóo-Lorenzo.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -226,6 +238,8 @@
 
   
 
+
+  
 
   </body>
 </html>

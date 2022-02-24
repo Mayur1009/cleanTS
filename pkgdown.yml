@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
-  articles/Read-more: Read-more.html
-  extra/about: about.html
-last_built: 2021-08-27T07:19Z
+  Read-more: Read-more.html
+  about: extra/about.html
+last_built: 2022-02-24T16:40Z
 
