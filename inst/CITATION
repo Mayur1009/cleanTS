@@ -1,0 +1,22 @@
+citHeader("To cite cleanTS in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "cleanTS: Automated (AutoML) tool to clean univariate time series at microscales",
+  author   = personList(as.person("Mayur Kishor Shende"),
+                   as.person("Andrés E. Feijóo-Lorenzo"),
+                   as.person("Neeraj Dhanraj Bokde")),
+  journal  = "Neurocomputing",
+  year     = "2022",
+  volume   = "500",
+  pages    = "155-176",
+  issn     = "0925-2312",
+  doi      = "10.1016/j.neucom.2022.05.057",
+  url      = "https://www.sciencedirect.com/science/article/pii/S0925231222006117",
+  textVersion = paste(
+        "Shende M, Feijoo A, Bokde N (2022).",
+        "cleanTS: Automated (AutoML) tool to clean univariate time series at microscales.",
+        "Neurocomputing, 500, 155--176. doi: https://doi.org/10.1016/j.neucom.2022.05.057",
+        "URL https://www.sciencedirect.com/science/article/pii/S0925231222006117"
+  )
+)

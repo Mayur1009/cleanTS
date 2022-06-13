@@ -14,16 +14,29 @@ prepare_plot_data <- function(obj, interval) {
   imp_all <- impute_all(orig_data, obj$imp_methods)
 
   pdf_l <- copy(orig_data)
-  pdf_l <- pdf_l[
-    ,
-    "state" :=
-      cut(
-        time,
-        breaks = interval,
-        labels = F,
-        start.on.monday = F
-      )
-  ][,
+  if(is.character(interval)){
+    pdf_l <- pdf_l[
+      ,
+      "state" :=
+        cut(
+          time,
+          breaks = interval,
+          labels = F,
+          start.on.monday = F
+        )
+    ]
+  } else {
+    pdf_l <- pdf_l[
+      ,
+      "state" :=
+        rep(
+          1:ceiling(.N/interval),
+          each = interval,
+          length.out = .N
+        )
+    ]
+  }
+  pdf_l <- pdf_l[,
     "X" := seq_len(length(value)),
     by = "state"
   ][

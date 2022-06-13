@@ -5,10 +5,9 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/cleanTS)](https://CRAN.R-project.org/package=cleanTS)
-[![R-CMD-check](https://github.com/Mayur1009/cleanTS/workflows/R-CMD-check/badge.svg)](https://github.com/Mayur1009/cleanTS/actions)
+[![R-CMD-check](https://github.com/Mayur1009/cleanTS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Mayur1009/cleanTS/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 `cleanTS` package focuses on developing a tool for making the process of
@@ -35,9 +34,9 @@ The package can also be used using a shiny application, available at
 <https://mayur1009.shinyapps.io/cleanTS/>.
 
 Package Documentation can be found at
-<https://mayur1009.github.io/cleanTS/>
+<https://mayur1009.github.io/cleanTS/>.
 
-This project is a part to [Google Summer of Code
+This project is a part of [Google Summer of Code
 2021](https://summerofcode.withgoogle.com/projects/#4626948166254592).
 
 ## Installation
@@ -60,8 +59,6 @@ library(cleanTS)
 
 # Read sunspot.month dataset
 data <- timetk::tk_tbl(sunspot.month)
-#> Warning: `type_convert()` only converts columns of type 'character'.
-#> - `df` has no columns of type 'character'
 print(data)
 #> # A tibble: 3,177 × 2
 #>    index     value
@@ -85,8 +82,6 @@ data$value[ind] <- NA
 
 # Create `cleanTS` object
 cts <- cleanTS(data, date_format = c("my"))
-#> Warning: `type_convert()` only converts columns of type 'character'.
-#> - `df` has no columns of type 'character'
 summary(cts)
 #>                  Length Class      Mode     
 #> clean_data       5      data.table list     
