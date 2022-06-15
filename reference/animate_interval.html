@@ -100,7 +100,8 @@ of animation.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Convert sunspots.month to dataframe</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="co"># Convert sunspots.month to dataframe</span></span>
 <span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">timetk</span><span class="fu">::</span><span class="fu"><a href="https://business-science.github.io/timetk/reference/tk_tbl.html" class="external-link">tk_tbl</a></span><span class="op">(</span><span class="va">sunspot.month</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Randomly insert missing values to simulate missing value imputation</span></span>
@@ -113,7 +114,7 @@ of animation.</p>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Create a `gganim` using `animate_interval()` function</span></span>
 <span class="r-in"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">animate_interval</span><span class="op">(</span><span class="va">cts</span>, <span class="st">"10 year"</span><span class="op">)</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span class="op">}</span></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
