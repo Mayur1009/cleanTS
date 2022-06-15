@@ -1,6 +1,8 @@
 template:
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    pkgdown-nav-height: 75px
 
 authors:
   Mayur Shende:

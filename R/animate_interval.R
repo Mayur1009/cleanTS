@@ -6,13 +6,13 @@
 #' First, the data is split according to the `interval` argument passed to the
 #' function. If it is a numeric value, the cleaned data is split into dataframes
 #' containing `interval` observations. It can also be a string, like
-#' \emph{1 week}, \emph{3 months}, \emph{14 days}, etc. In this case, the data
+#' **1 week**, **3 months**, **14 days**, etc. In this case, the data
 #' is split according to the `interval` given, using the timestamp column. Then
 #' an animation is created using the spliited data, with the help of `gganimate`
-#' package. The \emph{animate\_interval()} function returns a list containing
-#' the \emph{gganim} object used to generate the animation and the number of
+#' package. The `animate_interval()` function returns a list containing
+#' the `gganim` object used to generate the animation and the number of
 #' states in the data. The animation can be generated using the
-#' \emph{gen.animation()} function and saved using the \emph{anim\_save()}
+#' `gen.animation()` function and saved using the `anim_save()`
 #' function. The plots in the animation also contain a short summary, containing
 #' the statistical information and the number of missing values, outliers,
 #' missing timestamps, and duplicate timestamps in the data shown in that frame

@@ -36,7 +36,7 @@ The package can also be used using a shiny application, available at
 Package Documentation can be found at
 <https://mayur1009.github.io/cleanTS/>.
 
-This project is a part of [Google Summer of Code
+This project was a part of [Google Summer of Code
 2021](https://summerofcode.withgoogle.com/projects/#4626948166254592).
 
 ## Installation
