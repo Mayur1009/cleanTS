@@ -27,6 +27,7 @@
 #' * nstates: The number of states in the animation.
 #'
 #' @examples
+#' \dontrun{
 #' # Convert sunspots.month to dataframe
 #' data <- timetk::tk_tbl(sunspot.month)
 #'
@@ -40,7 +41,7 @@
 #'
 #' # Create a `gganim` using `animate_interval()` function
 #' a <- animate_interval(cts, "10 year")
-#'
+#' }
 #'
 #' @import ggplot2
 #' @import transformr

@@ -39,6 +39,7 @@ missing timestamps, and duplicate timestamps in the data shown in that frame
 of animation.
 }
 \examples{
+\dontrun{
 # Convert sunspots.month to dataframe
 data <- timetk::tk_tbl(sunspot.month)
 
@@ -52,6 +53,6 @@ cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
 
 # Create a `gganim` using `animate_interval()` function
 a <- animate_interval(cts, "10 year")
-
+}
 
 }

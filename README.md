@@ -42,7 +42,7 @@ This project was a part of [Google Summer of Code
 ## Installation
 
 ``` r
-# Install release version from CRAN (yet to be released)
+# Install release version from CRAN
 install.packages("cleanTS")
 
 # Install development version from GitHub
