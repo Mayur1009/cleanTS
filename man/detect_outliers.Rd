@@ -21,5 +21,5 @@ then the imputation errors are also returned.
 \description{
 This function detects outliers/anomalies in the data. If the
 \code{replace_outlier} argument is set to \code{TRUE}, then the outliers are removed
-and imputated using the provided imputation methods.
+and imputed using the provided imputation methods.
 }

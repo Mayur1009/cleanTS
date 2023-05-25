@@ -122,15 +122,17 @@ animate_interval <- function(obj, interval) {
         lineheight = 1.2
       )
     )
+
+
   anim <- anim +
     gganimate::transition_states(
       state,
       transition_length = 1,
       state_length = 3
     ) +
-    gganimate::shadow_mark(alpha = alpha / 10) +
+    gganimate::shadow_mark(alpha = alpha / 10)
     # shadow_wake(10/last_state, wrap = F, size = NULL) +
-    gganimate::exit_fade()
+    #gganimate::exit_fade()
 
   return(list("animation" = anim, "nstates" = last_state))
 }
@@ -207,7 +209,9 @@ reportHelper <- function(data, miss_ts, dup_ts) {
 #' a <- animate_interval(cts, "10 year")
 #'
 #' # Generate animation using `gen.animation()`
-#' gen.animation(a, height = 700, width = 900)
+#' if(interactive()){
+#'   gen.animation(a, height = 700, width = 900)
+#' }
 #'
 #' # Save animation using `anim_save()`
 #' anim_save("filename.gif")

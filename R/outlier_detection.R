@@ -2,7 +2,7 @@
 #'
 #' This function detects outliers/anomalies in the data. If the
 #' `replace_outlier` argument is set to `TRUE`, then the outliers are removed
-#' and imputated using the provided imputation methods.
+#' and imputed using the provided imputation methods.
 #'
 #' @param dt A data.table.
 #' @param replace_outlier Boolean, defaults to `TRUE`. Specify if the outliers
@@ -12,28 +12,38 @@
 #' @return The outliers found in the data. If the outliers are replaced,
 #' then the imputation errors are also returned.
 #'
-#' @importFrom data.table setnames
-#' @importFrom anomalize anomalize time_decompose time_recompose
 
+#### Before anomalize got removed
+# @importFrom data.table setnames
+# @importFrom anomalize anomalize time_decompose time_recompose
+####
+
+#' @importFrom stats mad median
 detect_outliers <- function(dt, replace_outlier, imp_methods) {
   time <- anomaly <- is_outlier <- value <- remainder <- NULL
 
-  tbl <- tibbletime::as_tbl_time(dt, index = time)
+  # tbl <- tibbletime::as_tbl_time(dt, index = time)
 
-  ano <- as.data.table(
-    time_recompose(
-      data = anomalize(
-        data = time_decompose(
-          data = tbl,
-          target = value,
-          message = F
-        ),
-        target = remainder
-      )
-    )
-  )
-  setnames(ano, c("observed"), c("value"))
-  ano[, "is_outlier" := ifelse(anomaly == "Yes", T, F)]
+  # ano <- as.data.table(
+  #   time_recompose(
+  #     data = anomalize(
+  #       data = time_decompose(
+  #         data = tbl,
+  #         target = value,
+  #         message = F
+  #       ),
+  #       target = remainder
+  #     )
+  #   )
+  # )
+  # setnames(ano, c("observed"), c("value"))
+
+  ano <- copy(dt)
+  # Implementing Hample filter for outlier detection
+  lb <- median(dt$value) - 3 * mad(dt$value)
+  ub <- median(dt$value) + 3 * mad(dt$value)
+  ano[, "is_outlier" := ifelse(value < lb | value > ub, T, F)]
+
   df <- ano[is_outlier == TRUE, c("time", "value")]
 
   if (!replace_outlier | nrow(df) == 0) {

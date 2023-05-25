@@ -14,7 +14,7 @@ prepare_plot_data <- function(obj, interval) {
   imp_all <- impute_all(orig_data, obj$imp_methods)
 
   pdf_l <- copy(orig_data)
-  if(is.character(interval)){
+  if (is.character(interval)) {
     pdf_l <- pdf_l[
       ,
       "state" :=
@@ -36,6 +36,8 @@ prepare_plot_data <- function(obj, interval) {
         )
     ]
   }
+
+
   pdf_l <- pdf_l[,
     "X" := seq_len(length(value)),
     by = "state"
@@ -52,7 +54,9 @@ prepare_plot_data <- function(obj, interval) {
     exptime1 <-
       time2 - lubridate::period(num = as.numeric(spt[1]), units = spt[2])
 
-    offset <- length(seq(from = exptime1, to = pdf_l[1, ]$time, by = dif))
+    ################ Fixed
+    offset <- length(seq(from = exptime1, to = pdf_l[1, ]$time, by = dif)) - 1
+    ######################
     pdf_l[state == 1, X := X + offset]
   }
 

@@ -37,7 +37,9 @@ width, fps, renderer, etc.
 a <- animate_interval(cts, "10 year")
 
 # Generate animation using `gen.animation()`
-gen.animation(a, height = 700, width = 900)
+if(interactive()){
+  gen.animation(a, height = 700, width = 900)
+}
 
 # Save animation using `anim_save()`
 anim_save("filename.gif")

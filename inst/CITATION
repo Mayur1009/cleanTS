@@ -1,11 +1,12 @@
-citHeader("To cite cleanTS in publications use:")
-
-citEntry(
-  entry    = "Article",
-  title    = "cleanTS: Automated (AutoML) tool to clean univariate time series at microscales",
-  author   = personList(as.person("Mayur Kishor Shende"),
-                   as.person("Andrés E. Feijóo-Lorenzo"),
-                   as.person("Neeraj Dhanraj Bokde")),
+bibentry(
+  bibtype = "Article",
+  title = "cleanTS: Automated (AutoML) tool to clean univariate time series at microscales",
+  author = c(
+    as.person("Mayur Kishor Shende"),
+    as.person("Andrés E. Feijóo-Lorenzo"),
+    as.person("Neeraj Dhanraj Bokde")
+  ),
+  publisher = "Elsevier",
   journal  = "Neurocomputing",
   year     = "2022",
   volume   = "500",
