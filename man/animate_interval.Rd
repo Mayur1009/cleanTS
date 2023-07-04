@@ -40,19 +40,10 @@ of animation.
 }
 \examples{
 \dontrun{
-# Convert sunspots.month to dataframe
-data <- timetk::tk_tbl(sunspot.month)
+  # Create a `gganim` using `animate_interval()` function
+  a <- animate_interval(cts, "10 year")
 
-# Randomly insert missing values to simulate missing value imputation
-set.seed(10)
-ind <- sample(nrow(data), 100)
-data$value[ind] <- NA
-
-# Perform cleaning
-cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
-
-# Create a `gganim` using `animate_interval()` function
-a <- animate_interval(cts, "10 year")
+  # cts -> `cleanTS` object created using `cleanTS()`.
 }
 
 }

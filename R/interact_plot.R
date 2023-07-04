@@ -22,9 +22,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Using the same data used in `cleanTS()` function example.
-#' interact_plot(cts, interval = "1 week")
+#'    if(interactive()){
+#'      # Using the same data used in `cleanTS()` function example.
+#'      interact_plot(cts, interval = "1 week")
+#'    }
 #' }
+#'
 #'
 #' @import shiny
 #' @import ggplot2

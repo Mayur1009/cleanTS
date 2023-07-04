@@ -8,18 +8,12 @@
 #'
 #' @return Does not return any value.
 #' @examples
-#' # Convert sunspots.month to dataframe
-#' data <- timetk::tk_tbl(sunspot.month)
+#' \dontrun{
+#'   # Perform cleaning
+#'   cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
 #'
-#' # Randomly insert missing values to simulate missing value imputation
-#' set.seed(10)
-#' ind <- sample(nrow(data), 100)
-#' data$value[ind] <- NA
-#'
-#' # Perform cleaning
-#' cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
-#'
-#' gen.report(cts)
+#'   gen.report(cts)
+#' }
 #'
 #' @export
 gen.report <- function(obj) {

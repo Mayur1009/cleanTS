@@ -28,19 +28,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Convert sunspots.month to dataframe
-#' data <- timetk::tk_tbl(sunspot.month)
+#'   # Create a `gganim` using `animate_interval()` function
+#'   a <- animate_interval(cts, "10 year")
 #'
-#' # Randomly insert missing values to simulate missing value imputation
-#' set.seed(10)
-#' ind <- sample(nrow(data), 100)
-#' data$value[ind] <- NA
-#'
-#' # Perform cleaning
-#' cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
-#'
-#' # Create a `gganim` using `animate_interval()` function
-#' a <- animate_interval(cts, "10 year")
+#'   # cts -> `cleanTS` object created using `cleanTS()`.
 #' }
 #'
 #' @import ggplot2
@@ -206,15 +197,15 @@ reportHelper <- function(data, miss_ts, dup_ts) {
 #'
 #' @examples
 #' \dontrun{
-#' a <- animate_interval(cts, "10 year")
+#'   a <- animate_interval(cts, "10 year")
 #'
-#' # Generate animation using `gen.animation()`
-#' if(interactive()){
-#'   gen.animation(a, height = 700, width = 900)
-#' }
+#'   # Generate animation using `gen.animation()`
+#'   if(interactive()){
+#'     gen.animation(a, height = 700, width = 900)
+#'   }
 #'
-#' # Save animation using `anim_save()`
-#' anim_save("filename.gif")
+#'   # Save animation using `anim_save()`
+#'   anim_save("filename.gif")
 #' }
 #' @export
 gen.animation <- function(anim, nframes = 2*anim$nstates, duration = anim$nstate, ...) {

@@ -34,14 +34,14 @@ width, fps, renderer, etc.
 }
 \examples{
 \dontrun{
-a <- animate_interval(cts, "10 year")
+  a <- animate_interval(cts, "10 year")
 
-# Generate animation using `gen.animation()`
-if(interactive()){
-  gen.animation(a, height = 700, width = 900)
-}
+  # Generate animation using `gen.animation()`
+  if(interactive()){
+    gen.animation(a, height = 700, width = 900)
+  }
 
-# Save animation using `anim_save()`
-anim_save("filename.gif")
+  # Save animation using `anim_save()`
+  anim_save("filename.gif")
 }
 }
