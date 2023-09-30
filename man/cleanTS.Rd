@@ -87,16 +87,18 @@ imputations are also included. The \emph{cleanTS} object is returned by the
 function.
 }
 \examples{
-# Convert sunspots.month to dataframe
-data <- timetk::tk_tbl(sunspot.month)
-print(data)
+\dontrun{
+  # Convert sunspots.month to dataframe
+  data <- timetk::tk_tbl(sunspot.month)
+  print(data)
 
-# Randomly insert missing values to simulate missing value imputation
-set.seed(10)
-ind <- sample(nrow(data), 100)
-data$value[ind] <- NA
+  # Randomly insert missing values to simulate missing value imputation
+  set.seed(10)
+  ind <- sample(nrow(data), 100)
+  data$value[ind] <- NA
 
-# Perform cleaning
-cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
-print(cts)
+  # Perform cleaning
+  cts <- cleanTS(data, date_format = "my", time = "index", value = "value")
+  print(cts)
+}
 }

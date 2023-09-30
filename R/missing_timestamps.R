@@ -56,8 +56,8 @@ missing_timestamps <- function(dt) {
 #'
 find_dif <- function(time1, time2) {
   i <- interval(time1, time2)
-  for (f in c("years", "months", "weeks", "days", "hours", "minutes",
-              "seconds")) {
+  for (f in c("years", "months", "weeks", "days", "hours", "mins",
+              "secs")) {
     t <- i %/% period(f)
     if (t > 0) {
       return(paste(t, f))

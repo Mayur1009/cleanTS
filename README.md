@@ -20,15 +20,15 @@ the creation of a handy software tool that deals with the problems,
 processes, analysis and visualization of big data time series, with
 minimum human intervention.
 
--   `cleanTS()` checks the data for missing and duplicate timestamps,
-    performs missing value imputation and removes anomalies/outliers
-    from the data.
+- `cleanTS()` checks the data for missing and duplicate timestamps,
+  performs missing value imputation and removes anomalies/outliers from
+  the data.
 
--   `animate_interval()` splits the data and generates an animated plot.
+- `animate_interval()` splits the data and generates an animated plot.
 
--   `interact_plot()` is similar to `animate_interval()` but creates an
-    interactive plot which provides relatively more control over the
-    animation.
+- `interact_plot()` is similar to `animate_interval()` but creates an
+  interactive plot which provides relatively more control over the
+  animation.
 
 The package can also be used using a shiny application, available at
 <https://mayur1009.shinyapps.io/cleanTS/>.
@@ -73,7 +73,7 @@ print(data)
 #>  8 Aug 1749   66.3
 #>  9 Sep 1749   75.9
 #> 10 Oct 1749   75.5
-#> # … with 3,167 more rows
+#> # ℹ 3,167 more rows
 
 # Randomly insert missing values to simulate missing value imputation
 set.seed(10)
